@@ -12,8 +12,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { SharedModule } from './shared/shared.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -30,9 +34,21 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+			timeOut: 7000,
+			positionClass: 'toast-bottom-left',
+			maxOpened: 3,
+			preventDuplicates: true
+    }),
+    BrowserAnimationsModule,
+    SharedModule,
+    FlexLayoutModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+

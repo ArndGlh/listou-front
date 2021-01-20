@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+@import '/src/app/shared/material/palettes.scss';
+@import '~ngx-toastr/toastr';
+@import '/src/styles/common.scss';
+
+@include mat-core();
+
+html, body {
+  height: 100%;
+  background-color: $background-color;
+}
+
+body {
+  margin: 0;
+  font-family: Proxima Nova;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e8e5e0;
+}
+
+

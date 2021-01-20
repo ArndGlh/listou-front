@@ -1,41 +1,31 @@
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">bezKoder</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
-      </li>
-      <li class="nav-item" *ngIf="showModeratorBoard">
-        <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-      </li>
-    </ul>
+  <mat-toolbar class="toolbar">
+    <button mat-icon-button class="icon" routerLink="home">
+      <mat-icon svgIcon="white-home" aria-hidden="false"></mat-icon>
+    </button>
+    <a *ngIf="showAdminBoard" routerLink="admin" class="link">Admin Board</a>
+    <a *ngIf="showModeratorBoard" routerLink="mod" class="link">Moderator Board</a>
+    <a *ngIf="isLoggedIn" routerLink="user" class="link">User</a>
 
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
-      </li>
-    </ul>
+    <span class="spacer"></span>
 
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
-      </li>
-    </ul>
-  </nav>
+    <a *ngIf="!isLoggedIn" routerLink="register" class="link">Sign Up</a>
+    <a *ngIf="!isLoggedIn" routerLink="login" class="link">Login</a>
+    <a *ngIf="isLoggedIn" routerLink="profile" class="link">{{ username }}</a>
+    <a *ngIf="isLoggedIn" (click)="logout()" class="link">LogOut</a>
+  </mat-toolbar>
 
   <div class="container">
     <router-outlet></router-outlet>
   </div>
-</div>
+  </div>
+
+<!-- ngxTippy [tippyProps]="getToolTipOptions()"
+
+  public getToolTipOptions(template: string) {
+    return {
+      placement: 'left',
+      allowHTML: true,
+      content: this.replaceCopyReference(template)
+    };
+  } -->
