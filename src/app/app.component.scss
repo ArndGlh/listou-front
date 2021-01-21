@@ -11,7 +11,7 @@
   }
 
 .home-link {
-  cursor:"pointer";
+  cursor: pointer;
   text-decoration: none;
   transition: 1s;
   font-size: 20px;
@@ -19,7 +19,7 @@
 }
 
 .link {
-  cursor:"pointer";
+  cursor: pointer;
   text-decoration: none;
   transition: 1s;
   margin-left: 20px;
@@ -34,4 +34,8 @@
 
 .icon {
   background-color: black;
+}
+
+a {
+  outline:none;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -7,32 +8,26 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  form: any = {
-    username: null,
-    email: null,
-    password: null
-  };
-  isSuccessful = false;
-  isSignUpFailed = false;
-  errorMessage = '';
 
-  constructor(private authService: AuthService) { }
+  public username: string = '';
+  public email: string = '';
+  public password: string = '';
+
+  constructor(private authService: AuthService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    const { username, email, password } = this.form;
-
-    this.authService.register(username, email, password).subscribe(
+    this.authService.register(this.username, this.email, this.password).subscribe(
       data => {
         console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
+        this.toastr.success('Inscription réussie !');
       },
       err => {
-        this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
+        this.toastr.error('Inscription échouée !');
+        // this.errorMessage = err.error.message;
       }
     );
   }
