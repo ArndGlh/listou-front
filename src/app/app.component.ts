@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { TokenStorageService } from './_services/token-storage.service';
 
 @Component({
@@ -16,11 +17,14 @@ export class AppComponent implements OnInit {
   username?: string;
 
   constructor(private tokenStorageService: TokenStorageService,
-    private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) { }
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.iconRegistry.addSvgIcon('white-home', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/home-white-18dp.svg'));
     this.iconRegistry.addSvgIcon('account', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/account_circle-white-18dp.svg'));
+    this.iconRegistry.addSvgIcon('menu', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/menu-white-18dp.svg'));
 
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
@@ -38,5 +42,10 @@ export class AppComponent implements OnInit {
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();
+  }
+
+  public go(url: string){
+    console.log("TRTRTRTR");
+    this.router.navigate([url]);
   }
 }

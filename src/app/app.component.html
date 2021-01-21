@@ -1,28 +1,72 @@
-<div id="app">
-  <mat-toolbar class="toolbar">
-    <button mat-icon-button class="icon" routerLink="home">
-      <mat-icon svgIcon="white-home" aria-hidden="false"></mat-icon>
-    </button>
-    <a *ngIf="showAdminBoard" routerLink="admin" class="link">Admin Board</a>
-    <a *ngIf="showModeratorBoard" routerLink="mod" class="link">Moderator Board</a>
-    <a *ngIf="isLoggedIn" routerLink="user" class="link">User</a>
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer [mode]="'over'">
+    <mat-list> <!-- TODO : to component -->
+      <!-- https://code-maze.com/angular-material-navigation/ -->
+      <div mat-subheader>Applications</div>
+      <mat-list-item>
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <a mat-line (click)="go('listou')">Listou</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <div mat-line>Application 2</div>
+        <div mat-line>(in progress)</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <div mat-line>Application 3</div>
+        <div mat-line>(in progress)</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
 
-    <span class="spacer"></span>
+      <div mat-subheader>Services</div>
+      <mat-list-item>
+        <mat-icon mat-list-icon>note</mat-icon>
+        <div mat-line>Suggestions</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>note</mat-icon>
+        <div mat-line>Bug report</div>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>note</mat-icon>
+        <div mat-line>Contact</div>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div id="app">
+      <mat-toolbar class="toolbar">
+        <button *ngIf="isLoggedIn" mat-icon-button class="icon" (click)="drawer.toggle()">
+          <mat-icon svgIcon="menu" aria-hidden="false"></mat-icon>
+        </button>
+        <button mat-icon-button class="icon" routerLink="home">
+          <mat-icon svgIcon="white-home" aria-hidden="false"></mat-icon>
+        </button>
+        <a *ngIf="showAdminBoard" routerLink="admin" class="link">Admin Board</a>
+        <a *ngIf="showModeratorBoard" routerLink="mod" class="link">Moderator Board</a>
+        <a *ngIf="isLoggedIn" routerLink="user" class="link">User</a>
 
-    <a *ngIf="!isLoggedIn" routerLink="register" class="link">S'inscrire</a>
-    <a *ngIf="!isLoggedIn" routerLink="login" class="link">Connexion</a>
-    <button *ngIf="isLoggedIn" mat-icon-button class="icon" routerLink="profile">
-      <mat-icon svgIcon="account" aria-hidden="false"></mat-icon>
-    </button>
-    <a *ngIf="isLoggedIn" (click)="logout()" class="link">Déconnexion</a>
-  </mat-toolbar>
+        <span class="spacer"></span>
 
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
-  </div>
+        <a *ngIf="!isLoggedIn" routerLink="register" class="link">S'inscrire</a>
+        <a *ngIf="!isLoggedIn" routerLink="login" class="link">Connexion</a>
+        <button *ngIf="isLoggedIn" mat-icon-button class="icon" routerLink="profile">
+          <mat-icon svgIcon="account" aria-hidden="false"></mat-icon>
+        </button>
+        <a *ngIf="isLoggedIn" (click)="logout()" class="link">Déconnexion</a>
+      </mat-toolbar>
 
-<!-- ngxTippy [tippyProps]="getToolTipOptions()"
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
+
+  <!-- ngxTippy [tippyProps]="getToolTipOptions()"
 
   public getToolTipOptions(template: string) {
     return {
