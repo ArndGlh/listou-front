@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { UserService } from '../_services/user.service';
 export class HomeComponent implements OnInit {
   content?: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.userService.getPublicContent().subscribe(
@@ -21,4 +23,5 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
 }

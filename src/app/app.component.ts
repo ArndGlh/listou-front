@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.iconRegistry.addSvgIcon('white-home', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/home-white-18dp.svg'));
+    this.iconRegistry.addSvgIcon('account', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/account_circle-white-18dp.svg'));
+
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {

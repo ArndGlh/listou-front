@@ -9,10 +9,12 @@
 
     <span class="spacer"></span>
 
-    <a *ngIf="!isLoggedIn" routerLink="register" class="link">Sign Up</a>
-    <a *ngIf="!isLoggedIn" routerLink="login" class="link">Login</a>
-    <a *ngIf="isLoggedIn" routerLink="profile" class="link">{{ username }}</a>
-    <a *ngIf="isLoggedIn" (click)="logout()" class="link">LogOut</a>
+    <a *ngIf="!isLoggedIn" routerLink="register" class="link">S'inscrire</a>
+    <a *ngIf="!isLoggedIn" routerLink="login" class="link">Connexion</a>
+    <button *ngIf="isLoggedIn" mat-icon-button class="icon" routerLink="profile">
+      <mat-icon svgIcon="account" aria-hidden="false"></mat-icon>
+    </button>
+    <a *ngIf="isLoggedIn" (click)="logout()" class="link">Déconnexion</a>
   </mat-toolbar>
 
   <div class="container">

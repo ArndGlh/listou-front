@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form: any = {
-    username: null,
-    password: null
-  };
+
+  public username = '';
+  public password = '';
+
   isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private toastr: ToastrService,
+    private router: Router) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -26,27 +29,26 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    const { username, password } = this.form;
+  public onSubmit(): void {
 
-    this.authService.login(username, password).subscribe(
+    this.authService.login(this.username, this.password).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
-        this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
+
         this.reloadPage();
       },
       err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
+        this.toastr.error('Connexion échouée !');
+        // this.errorMessage = err.error.message;
       }
     );
   }
 
-  reloadPage(): void {
+  public reloadPage(): void {
     window.location.reload();
   }
 }

@@ -9,9 +9,9 @@ import { AuthService } from '../_services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  public username: string = '';
-  public email: string = '';
-  public password: string = '';
+  public username = '';
+  public email = '';
+  public password = '';
 
   constructor(private authService: AuthService,
     private toastr: ToastrService) { }
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     this.authService.register(this.username, this.email, this.password).subscribe(
       data => {
         console.log(data);
