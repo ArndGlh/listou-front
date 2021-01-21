@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { User } from '../components/user/models/user.model';
 
 const API_URL = 'http://localhost:8080/api/test/';
 
@@ -8,7 +10,21 @@ const API_URL = 'http://localhost:8080/api/test/';
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient) { }
+
+  usersub = new Subject<User>();
+  currentUser = new User();
+
+  constructor(private http: HttpClient) {
+  }
+
+  emitUserSubject() {
+    this.usersub.next(this.currentUser);
+  }
+
+  login(user: User){
+    this.currentUser = user;
+    this.emitUserSubject();
+  }
 
   getPublicContent(): Observable<any> {
     return this.http.get(API_URL + 'all', { responseType: 'text' });
@@ -26,3 +42,12 @@ export class UserService {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
 }
+
+
+
+
+export class AppareilService {
+
+  appareilsSubject = new Subject<any[]>();
+
+  private appareils = [
