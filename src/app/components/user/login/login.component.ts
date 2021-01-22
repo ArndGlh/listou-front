@@ -63,12 +63,3 @@ export class LoginComponent implements OnInit {
     );
   }
 }
-
-
-
-accessToken: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFemVraWVsIiwiaWF0IjoxNjExMzA0MTAwLCJleHAiOjE2MTEzOTA1MDB9.z7DW-lFfXmTyB4VVlAVeRFNRtm5qMeCdUobdxFl3Np1yOeUqkv0jgUc0ixFwkFQHOxQdX4ZwcdK0QYFE_aNY0w"
-email: "arnaudguilhaumon@gmail.com"
-id: 1
-roles: ["ROLE_USER"]
-tokenType: "Bearer"
-username: "Ezekiel"

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { User } from './components/user/models/user.model';
 import { TokenStorageService } from './_services/token-storage.service';
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit {
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private userService: UserService) {
+    private userService: UserService,
+    private toastr: ToastrService) {
       this.currentUser = new User();
       this.userSubscription = new Subscription();
     }
@@ -36,9 +38,9 @@ export class AppComponent implements OnInit {
       (user: User) => {
         this.currentUser = user;
         this.isLoggedIn = true;
+        this.toastr.success('Connexion réussie !');
       }
     );
-    this.userService.emitUserSubject();
 
     this.iconRegistry.addSvgIcon('white-home', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/home-white-18dp.svg'));
     this.iconRegistry.addSvgIcon('account', this.sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/account_circle-white-18dp.svg'));
