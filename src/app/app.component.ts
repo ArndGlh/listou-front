@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
     this.userSubscription = this.userService.usersub.subscribe(
       (user: User) => {
         this.currentUser = user;
+        this.isLoggedIn = true;
       }
     );
     this.userService.emitUserSubject();

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from '../../../_services/auth.service';
 import { TokenStorageService } from '../../../_services/token-storage.service';
+import { Role } from '../models/role.model';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private toastr: ToastrService,
+    private userService: UserService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -33,13 +37,24 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.username, this.password).subscribe(
       data => {
+        console.log(data);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
-        this.isLoggedIn = true;
+        // this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
 
-        this.reloadPage();
+        let roles: Role[] = [];
+        let i = 0;
+        data.roles.forEach((role: string) => {
+          let r = new Role(i, role);
+          roles.push(r);
+          i++;
+        });
+
+        let user = new User(data.id, data.username, data.email, roles);
+        this.userService.login(user);
+        this.router.navigate(['/home']);
       },
       err => {
         this.toastr.error('Connexion échouée !');
@@ -47,8 +62,13 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
-  public reloadPage(): void {
-    window.location.reload();
-  }
 }
+
+
+
+accessToken: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJFemVraWVsIiwiaWF0IjoxNjExMzA0MTAwLCJleHAiOjE2MTEzOTA1MDB9.z7DW-lFfXmTyB4VVlAVeRFNRtm5qMeCdUobdxFl3Np1yOeUqkv0jgUc0ixFwkFQHOxQdX4ZwcdK0QYFE_aNY0w"
+email: "arnaudguilhaumon@gmail.com"
+id: 1
+roles: ["ROLE_USER"]
+tokenType: "Bearer"
+username: "Ezekiel"

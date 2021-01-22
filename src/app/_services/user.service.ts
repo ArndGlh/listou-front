@@ -42,12 +42,3 @@ export class UserService {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
 }
-
-
-
-
-export class AppareilService {
-
-  appareilsSubject = new Subject<any[]>();
-
-  private appareils = [
