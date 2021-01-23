@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/_services/user.service';
@@ -16,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   public username = '';
   public password = '';
+  public show: boolean;
 
   isLoggedIn = false;
   roles: string[] = [];
@@ -24,9 +27,15 @@ export class LoginComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private toastr: ToastrService,
     private userService: UserService,
-    private router: Router) { }
+    private router: Router,
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer,) {
+      this.show = false;
+     }
 
   ngOnInit(): void {
+    this.iconRegistry.addSvgIcon('eye', this.sanitizer.bypassSecurityTrustResourceUrl('../../../../assets/icons/remove_red_eye-white-18dp.svg'));
+
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
@@ -34,7 +43,6 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit(): void {
-
     this.authService.login(this.username, this.password).subscribe(
       data => {
         console.log(data);
@@ -61,5 +69,9 @@ export class LoginComponent implements OnInit {
         // this.errorMessage = err.error.message;
       }
     );
+  }
+
+  togglePassword() {
+    this.show = !this.show;
   }
 }

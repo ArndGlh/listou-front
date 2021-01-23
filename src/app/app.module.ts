@@ -19,6 +19,9 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ListouComponent } from './components/applications/listou/listou.component';
+import { SuggestionsComponent } from './components/application-services/suggestions/suggestions.component';
+import { BugReportComponent } from './components/application-services/bug-report/bug-report.component';
+import { ContactComponent } from './components/application-services/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { ListouComponent } from './components/applications/listou/listou.compone
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
-    ListouComponent
+    ListouComponent,
+    SuggestionsComponent,
+    BugReportComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

@@ -8,14 +8,15 @@
 html, body {
   height: 100%;
   background-color: $background-color;
+  color: $font-color;
 }
 
-body {
+.mat-body {
   margin: 0;
-  font-family: Proxima Nova;
+  // font-family: Proxima Nova;
   font-size: 14px;
   font-weight: 500;
-  color: #e8e5e0;
+  color: $font-color;
 }
 
 // Theme =======================================

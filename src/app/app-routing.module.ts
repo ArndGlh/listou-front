@@ -10,6 +10,9 @@ import { BoardModeratorComponent } from './components/boards/board-moderator/boa
 import { BoardAdminComponent } from './components/boards/board-admin/board-admin.component';
 import { LoginGuard } from './_helpers/login-guard';
 import { ListouComponent } from './components/applications/listou/listou.component';
+import { SuggestionsComponent } from './components/application-services/suggestions/suggestions.component';
+import { BugReportComponent } from './components/application-services/bug-report/bug-report.component';
+import { ContactComponent } from './components/application-services/contact/contact.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'mod', component: BoardModeratorComponent, canActivate: [LoginGuard] },
   { path: 'admin', component: BoardAdminComponent, canActivate: [LoginGuard] },
   { path: 'listou', component: ListouComponent },
+  { path: 'suggestions', component: SuggestionsComponent },
+  { path: 'bug-report', component: BugReportComponent },
+  { path: 'contact', component: ContactComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

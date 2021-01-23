@@ -61,11 +61,13 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.reload();
+    this.currentUser = new User();
+    this.isLoggedIn = false;
+    this.router.navigate(['home']);
+    this.toastr.success('Déconnexion réussie !');
   }
 
   public go(url: string){
-    console.log("TRTRTRTR");
     this.router.navigate([url]);
   }
 }

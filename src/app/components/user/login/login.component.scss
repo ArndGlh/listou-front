@@ -1,5 +1,8 @@
+@import '/src/styles/common.scss';
+
 .card {
-  background-color: #f7f7f7;
+  background-color: $card-color;
+  color: $font-color;
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
@@ -19,4 +22,21 @@
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+}
+
+.label {
+  color: $font-color;
+}
+
+input {
+  background-color: $background-color;
+  border-radius: 3px;
+  color: $font-color;
+  height: 30px;
+  border: none;
+}
+
+.button {
+  background-color: $background-color;
+  color: $font-color;
 }

@@ -124,5 +124,10 @@
       }
     }
   },
-  "defaultProject": "Angular11JwtAuth"
+  "defaultProject": "Angular11JwtAuth",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

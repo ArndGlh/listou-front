@@ -7,20 +7,19 @@
     <mat-card-content fxFlex>
 
       <form fxLayout="column" fxLayoutAlign="space-around stretch" name="form" novalidate>
-        <mat-form-field >
-          <mat-label>Nom d'utilisateur</mat-label>
-          <input matInput name="username" [(ngModel)]="username"/>
-        </mat-form-field>
+          <label class="label">Nom d'utilisateur</label>
+          <input class="input" name="username" [(ngModel)]="username"/>
 
-        <mat-form-field >
-          <mat-label>Mot de passe</mat-label>
-          <input matInput type="password" name="password" [(ngModel)]="password"/>
-        </mat-form-field>
+          <label class="label">Mot de passe</label>
+          <input class="input" [type]="show ? 'text' : 'password'" name="password" [(ngModel)]="password"/>
+          <button mat-icon-button class="icon" (click)="togglePassword()">
+            <mat-icon svgIcon="eye" aria-hidden="false"></mat-icon>
+          </button>
       </form>
     </mat-card-content>
     <mat-card-actions>
       <div fxFlex></div>
-      <button mat-raised-button (click)="onSubmit()">Se connecter</button>
+      <button mat-raised-button class="button" (click)="onSubmit()">Se connecter</button>
     </mat-card-actions>
   </mat-card>
 </div>

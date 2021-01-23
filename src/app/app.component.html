@@ -5,16 +5,16 @@
       <div mat-subheader>Applications</div>
       <mat-list-item>
         <mat-icon mat-list-icon>folder</mat-icon>
-        <a mat-line (click)="go('listou')">Listou</a>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('listou');">Listou</a>
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>folder</mat-icon>
-        <div mat-line>Application 2</div>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('home');">Application 2</a>
         <div mat-line>(in progress)</div>
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>folder</mat-icon>
-        <div mat-line>Application 3</div>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('home');">Application 3</a>
         <div mat-line>(in progress)</div>
       </mat-list-item>
       <mat-divider></mat-divider>
@@ -22,15 +22,15 @@
       <div mat-subheader>Services</div>
       <mat-list-item>
         <mat-icon mat-list-icon>note</mat-icon>
-        <div mat-line>Suggestions</div>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('suggestions');">Suggestions</a>
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>note</mat-icon>
-        <div mat-line>Bug report</div>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('bug-report');">Bug report</a>
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>note</mat-icon>
-        <div mat-line>Contact</div>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('contact');">Contact</a>
       </mat-list-item>
     </mat-list>
   </mat-drawer>
@@ -57,10 +57,11 @@
         <a *ngIf="isLoggedIn" (click)="logout()" class="link">Déconnexion</a>
       </mat-toolbar>
 
-      <div class="container">
+      <div class="container mat-body">
         <router-outlet></router-outlet>
       </div>
     </div>
+    <app-footer></app-footer>
   </mat-drawer-content>
 </mat-drawer-container>
 
