@@ -1,32 +1,31 @@
 <div fxLayout="row" fxLayoutAlign="center center">
   <mat-card fxFlex="40" fxFlexOffset="30" fxLayout="column" fxLayoutAlign="space-evenly stretch" class="card">
-    <mat-card-header fxFlex="20" fxLayout="column" fxLayoutAlign="center start">
+    <mat-card-header fxFlex="20" fxLayout="column" fxLayoutAlign="center center">
       <mat-card-title>Inscription</mat-card-title>
-      <mat-card-subtitle>Veuillez remplir les champs ci-dessous :</mat-card-subtitle>
     </mat-card-header>
-    <img fxFlex="20" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
+    <img fxFlex="20" id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card"/>
+    <mat-card-header fxFlex="20" fxLayout="column" fxLayoutAlign="center start">
+      <mat-card-subtitle class="label">Veuillez remplir les champs ci-dessous :</mat-card-subtitle>
+    </mat-card-header>
     <mat-card-content fxFlex>
 
       <form fxLayout="column" fxLayoutAlign="space-around stretch" name="form" novalidate>
-        <mat-form-field >
-          <mat-label>Nom d'utilisateur</mat-label>
-          <input matInput type="text" name="username" [(ngModel)]="username"/>
-        </mat-form-field>
+          <label class="label">Nom d'utilisateur</label>
+          <input class="input" type="text" name="username" [(ngModel)]="username"/>
 
-        <mat-form-field >
-          <mat-label>Email</mat-label>
-          <input matInput type="email" name="email" [(ngModel)]="email"/>
-        </mat-form-field>
+          <label class="label">Email</label>
+          <input class="input" type="email" name="email" [(ngModel)]="email"/>
 
-        <mat-form-field >
-          <mat-label>Mot de passe</mat-label>
-          <input matInput type="password" name="password" [(ngModel)]="password"/>
-        </mat-form-field>
+          <label class="label">Mot de passe</label>
+          <input class="input" [type]="show ? 'text' : 'password'" name="password" [(ngModel)]="password"/>
+          <button mat-icon-button class="icon" (click)="togglePassword()">
+            <mat-icon svgIcon="eye" aria-hidden="false"></mat-icon>
+          </button>
       </form>
     </mat-card-content>
     <mat-card-actions>
       <div fxFlex></div>
-      <button mat-raised-button (click)="onSubmit()">S'inscrire</button>
+      <button mat-raised-button class="button" (click)="onSubmit()">S'inscrire</button>
     </mat-card-actions>
   </mat-card>
 </div>

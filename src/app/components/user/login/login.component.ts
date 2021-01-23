@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer,) {
+    private sanitizer: DomSanitizer) {
       this.show = false;
      }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../_services/auth.service';
 
@@ -12,11 +14,18 @@ export class RegisterComponent implements OnInit {
   public username = '';
   public email = '';
   public password = '';
+  public show: boolean;
 
   constructor(private authService: AuthService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer) {
+      this.show = false;
+    }
 
   ngOnInit(): void {
+    this.iconRegistry.addSvgIcon('eye', this.sanitizer.bypassSecurityTrustResourceUrl('../../../../assets/icons/remove_red_eye-white-18dp.svg'));
+
   }
 
   public onSubmit(): void {
@@ -30,5 +39,9 @@ export class RegisterComponent implements OnInit {
         // this.errorMessage = err.error.message;
       }
     );
+  }
+
+  togglePassword() {
+    this.show = !this.show;
   }
 }

@@ -40,3 +40,7 @@ input {
   background-color: $background-color;
   color: $font-color;
 }
+
+input:focus{
+  outline: none;
+}
