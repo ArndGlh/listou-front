@@ -1,0 +1,11 @@
+@import '/src/styles/common.scss';
+
+
+.footer {
+    background-color: $card-color;
+    color: white;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

@@ -38,11 +38,11 @@
 }
 
 .link:hover, .link:active, .home-link:hover, .home-link:active {
-  color: #706F6E;
+  color: $link-hover-color;
 }
 
 .icon {
-  background-color: black;
+  background-color: $toolbar-color;
 }
 
 a {
@@ -56,4 +56,13 @@ a {
 
 .example-container {
   color: $card-color;
+}
+
+.app {
+  min-height: 100%;
+  position: relative;
+}
+
+.container {
+  padding-bottom: 100px;
 }

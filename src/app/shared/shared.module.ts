@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { MaterialModule } from "./material/material.module";
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
 	declarations: [
@@ -9,7 +10,8 @@ import { HeaderComponent } from './components/header/header.component';
 		HeaderComponent
 	],
 	imports: [
-		MaterialModule
+		MaterialModule,
+		FlexLayoutModule
 	],
 	exports: [
 		MaterialModule,

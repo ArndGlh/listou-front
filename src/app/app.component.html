@@ -9,7 +9,7 @@
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>folder</mat-icon>
-        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('home');">Application 2</a>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('home');">Avancements Mangas</a>
         <div mat-line>(in progress)</div>
       </mat-list-item>
       <mat-list-item>
@@ -35,7 +35,7 @@
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>
-    <div id="app">
+    <div id="app" class="app">
       <mat-toolbar class="toolbar">
         <button *ngIf="isLoggedIn" mat-icon-button class="icon" (click)="drawer.toggle()">
           <mat-icon svgIcon="menu" aria-hidden="false"></mat-icon>
@@ -60,8 +60,8 @@
       <div class="container mat-body">
         <router-outlet></router-outlet>
       </div>
+      <footer></footer>
     </div>
-    <app-footer></app-footer>
   </mat-drawer-content>
 </mat-drawer-container>
 
