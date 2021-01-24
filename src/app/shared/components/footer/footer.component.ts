@@ -23,18 +23,28 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.iconRegistry.addSvgIcon('app-store', this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/apple-app-store.svg'));
-    // this.urlService.getFooterUrls().subscribe(
-    //   data => {
-    //     this.footerUrls = data;
-    //   },
-    //   err => {
-    //     // this.footerUrls = JSON.parse(err.error).message;
-    //   }
-    // );
+    this.urlService.getFooterUrls().subscribe(
+      data => {
+        this.footerUrls = data;
+        console.log(this.footerUrls);
+      },
+      err => {
+        // this.footerUrls = JSON.parse(err.error).message;
+      }
+    );
   }
 
-  public go(url: string){
-    url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO";
-    window.open(url, "_blank");
+  public go(urlType: string): void{
+    let urlToGo = this.getUrlFromType(urlType);
+    window.open(urlToGo, "_blank");
+  }
+
+  public getUrlFromType(urlType: string): string{
+      for(let i = 0; i < this.footerUrls.length; i ++) {
+          if(this.footerUrls[i]['name'] === urlType) {
+              return this.footerUrls[i]['url'];
+          }
+      }
+      return '';
   }
 }
