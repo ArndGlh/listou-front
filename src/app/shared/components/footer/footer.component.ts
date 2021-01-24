@@ -22,7 +22,11 @@ export class FooterComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.iconRegistry.addSvgIcon('app-store', this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/apple-app-store.svg'));
+    this.iconRegistry.addSvgIcon('appstore', this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/apple-app-store.svg'));
+    this.iconRegistry.addSvgIcon('facebook', this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/facebook.svg'));
+    this.iconRegistry.addSvgIcon('youtube', this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/youtube.svg'));
+    this.iconRegistry.addSvgIcon('twitter', this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/twitter.svg'));
+
     this.urlService.getFooterUrls().subscribe(
       data => {
         this.footerUrls = data;
