@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { fadeIn } from 'src/app/shared/animations/fade-in';
 import { AuthService } from '../../../_services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  animations: [
+    fadeIn
+  ]
 })
 export class RegisterComponent implements OnInit {
 
