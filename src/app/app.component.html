@@ -1,7 +1,6 @@
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer [mode]="'over'">
     <mat-list> <!-- TODO : to component -->
-      <!-- https://code-maze.com/angular-material-navigation/ -->
       <div mat-subheader>Applications</div>
       <mat-list-item>
         <mat-icon mat-list-icon>folder</mat-icon>
@@ -35,7 +34,7 @@
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>
-    <div id="app" class="app">
+    <div id="app" class="app" fxLayout="column" fxFill>
       <mat-toolbar class="toolbar">
         <button *ngIf="isLoggedIn" mat-icon-button class="icon" (click)="drawer.toggle()">
           <mat-icon svgIcon="menu" aria-hidden="false"></mat-icon>
@@ -57,15 +56,13 @@
         <a *ngIf="isLoggedIn" (click)="logout()" class="link">Déconnexion</a>
       </mat-toolbar>
 
-      <div class="container mat-body">
+      <div class="container mat-body" fxFlex fxLayout="column">
         <router-outlet></router-outlet>
       </div>
-      <footer></footer>
+      <footer></footer >
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
-
-
 
   <!-- ngxTippy [tippyProps]="getToolTipOptions()"
 

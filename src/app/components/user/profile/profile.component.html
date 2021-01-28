@@ -1,4 +1,4 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
+<!-- <div class="container" *ngIf="currentUser">
   <header class="jumbotron">
     <h3>
       <strong>{{ currentUser.username }}</strong> Profile
@@ -19,8 +19,40 @@
       {{ role }}
     </li>
   </ul>
+</div> -->
+
+<div fxLayout="column">
+  <div fxFlex fxLayout="row" fxLayoutAlign="start stretch">
+    <div fxFlex class="sidenav" fxFlexAlign="stretch">
+      <mat-list>
+        <mat-list-item>
+          <mat-icon mat-list-icon>person</mat-icon>
+          <div mat-subheader>Paramètres utilisateur</div>
+        </mat-list-item>
+        <mat-divider class="divider"></mat-divider>
+        <mat-list-item>
+          <mat-icon mat-list-icon>account_circle</mat-icon>
+          <a mat-line class="link-drawer" (click)="display('profile');">Profil</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>settings_applications</mat-icon>
+          <a mat-line class="link-drawer" (click)="display('account');">Compte</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>notifications</mat-icon>
+          <a mat-line class="link-drawer" (click)="display('notifications');">Notifications</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>tune</mat-icon>
+          <a mat-line class="link-drawer" (click)="display('preferences');">Préférences</a>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
+        <h3>Paramètres du profil utilisateur</h3>
+    </div>
+    <div fxFlex="20"></div>
+  </div>
+  <div fxFlex></div>
 </div>
 
-<ng-template #loggedOut>
-  Please login.
-</ng-template>

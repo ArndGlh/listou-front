@@ -1,0 +1,22 @@
+@import '/src/styles/common.scss';
+
+h3 {
+    margin: 16px;
+}
+
+.sidenav {
+    color: $font-color;
+    background-color: $card-color;
+}
+
+::ng-deep.mat-list-base .mat-subheader, ::ng-deep.mat-list-base .mat-subheader {
+    color: $font-color;
+}
+
+.mat-list-base .mat-list-item {
+    color: $font-color;
+}
+
+.divider {
+    background-color: $font-color;
+}
