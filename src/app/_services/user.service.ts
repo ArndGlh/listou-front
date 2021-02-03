@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
 import { User } from '../components/user/models/user.model';
 
-const API_URL = 'http://localhost:8080/api/rest/v1/board/';
+const API_URL = 'http://localhost:8080/test/';
 
 @Injectable({
   providedIn: 'root'

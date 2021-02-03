@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
 
   public listouImage: string;
   public mangaUpdateImage: string;
+  public akwaKonJouImage: string;
   private isLoggedIn = false;
 
   constructor(private userService: UserService,
@@ -27,19 +28,20 @@ export class HomeComponent implements OnInit {
     private tokenStorageService: TokenStorageService) {
       this.listouImage = '../../assets/images/app-listou.jpg'
       this.mangaUpdateImage = '../../assets/images/app-manga.jpg';
+      this.akwaKonJouImage = '../../assets/images/app-akwakonjou.jpg';
     }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
-    this.userService.getPublicContent().subscribe(
-      data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );
+    // this.userService.getPublicContent().subscribe(
+    //   data => {
+    //     this.content = data;
+    //   },
+    //   err => {
+    //     this.content = JSON.parse(err.error).message;
+    //   }
+    // );
   }
 
   public go(url: string):void{
