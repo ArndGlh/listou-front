@@ -9,14 +9,17 @@ import { TokenStorageService } from '../../../_services/token-storage.service';
 export class ProfileComponent implements OnInit {
   currentUser: any;
   panelOpenState = false;
+  public selectedTab: number;
 
-  constructor(private token: TokenStorageService) { }
+  constructor(private token: TokenStorageService) {
+    this.selectedTab = 1;
+  }
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
   }
 
-  public display(section: string):void {
-
+  public display(section: number):void {
+    this.selectedTab = section;
   }
 }

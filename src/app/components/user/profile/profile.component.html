@@ -21,7 +21,7 @@
   </ul>
 </div> -->
 
-<div fxLayout="column">
+<div fxLayout="column" class="app-profile">
   <div fxFlex fxLayout="row" fxLayoutAlign="start stretch">
     <div fxFlex class="sidenav" fxFlexAlign="stretch">
       <mat-list>
@@ -32,27 +32,27 @@
         <mat-divider class="divider"></mat-divider>
         <mat-list-item>
           <mat-icon mat-list-icon>account_circle</mat-icon>
-          <a mat-line class="link-drawer" (click)="display('profile');">Profil</a>
+          <a mat-line class="link-drawer" (click)="display(1);">Profil</a>
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>settings_applications</mat-icon>
-          <a mat-line class="link-drawer" (click)="display('account');">Compte</a>
+          <a mat-line class="link-drawer" (click)="display(2);">Compte</a>
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>notifications</mat-icon>
-          <a mat-line class="link-drawer" (click)="display('notifications');">Notifications</a>
+          <a mat-line class="link-drawer" (click)="display(3);">Notifications</a>
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>tune</mat-icon>
-          <a mat-line class="link-drawer" (click)="display('preferences');">Préférences</a>
+          <a mat-line class="link-drawer" (click)="display(4);">Préférences</a>
         </mat-list-item>
       </mat-list>
     </div>
     <div fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
         <h3>Paramètres du profil utilisateur</h3>
+        <profile-details [tabNumber]="selectedTab"></profile-details>
     </div>
     <div fxFlex="20"></div>
   </div>
-  <div fxFlex></div>
 </div>
 

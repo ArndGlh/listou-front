@@ -22,6 +22,7 @@ import { ListouComponent } from './components/applications/listou/listou.compone
 import { SuggestionsComponent } from './components/application-services/suggestions/suggestions.component';
 import { BugReportComponent } from './components/application-services/bug-report/bug-report.component';
 import { ContactComponent } from './components/application-services/contact/contact.component';
+import { ProfileDetailsComponent } from './components/user/profile/profile-details/profile-details.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ContactComponent } from './components/application-services/contact/cont
     ListouComponent,
     SuggestionsComponent,
     BugReportComponent,
-    ContactComponent
+    ContactComponent,
+    ProfileDetailsComponent
   ],
   imports: [
     BrowserModule,
