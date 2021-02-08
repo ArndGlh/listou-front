@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +23,7 @@ import { SuggestionsComponent } from './components/application-services/suggesti
 import { BugReportComponent } from './components/application-services/bug-report/bug-report.component';
 import { ContactComponent } from './components/application-services/contact/contact.component';
 import { ProfileDetailsComponent } from './components/user/profile/profile-details/profile-details.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,8 @@ import { ProfileDetailsComponent } from './components/user/profile/profile-detai
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MaterialFileInputModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
 			timeOut: 7000,
 			positionClass: 'toast-bottom-left',

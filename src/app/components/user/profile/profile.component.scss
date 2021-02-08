@@ -24,3 +24,12 @@ h3 {
 .app-profile {
     height: 100%;
 }
+
+.link-drawer {
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: $font-color;
+    font-size: 17px;
+  }

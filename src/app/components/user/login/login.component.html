@@ -12,7 +12,7 @@
 
           <label class="label">Mot de passe</label>
           <input class="input" [type]="show ? 'text' : 'password'" name="password" [(ngModel)]="password"/>
-          <button mat-icon-button class="icon" (click)="togglePassword()">
+          <button mat-icon-button class="icon" type="button" (click)="togglePassword()">
             <mat-icon svgIcon="eye" aria-hidden="false"></mat-icon>
           </button>
       </form>

@@ -1,6 +1,40 @@
-<ng-container [ngSwitch]="tabNumber">
+<div [ngSwitch]="tabNumber" fxLayout="row" fxLayoutAlign="center center">
     <div *ngSwitchCase="1">
-        Section 1
+        <div fxLayout="row">
+            <div fxFlex="40">
+
+                    <h3>Public Avatar</h3>
+                    <p>Vous pouvez changer votre avatar public ici.</p>
+
+            </div>
+            <div fxFlex="60">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card"/>
+
+                    <div fxLayout="column" [formGroup]="form">
+                        <p>Télécharger un nouvel avatar (max 200 KB)</p>
+                        <mat-form-field appearance="outline">
+                            <ngx-mat-file-input formControlName="avatarFile" valuePlaceholder="Choisissez un fichier" [accept]="'image/*'"></ngx-mat-file-input>
+                            <mat-icon matSuffix>folder</mat-icon>
+                            <mat-error *ngIf="form.get('avatarFile').hasError('maxContentSize')">
+                              The total size must not exceed {{form.get('avatarFile')?.getError('maxContentSize').maxSize | byteFormat}} ({{form.get('avatarFile')?.getError('maxContentSize').actualSize
+                              | byteFormat}}).
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-divider class="divider"></mat-divider>
+                        <button mat-raised-button class="button" (click)="onSubmit()" [disabled]="this.form.get('avatarFile') == undefined">Changer d'avatar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-divider class="divider"></mat-divider>
+        <div fxLayout="row">
+            <div fxFlex="40">
+                <h3>Paramètres principaux</h3>
+                <p>Ce qui apparaîtra sur votre profil</p>
+            </div>
+            <div fxFlex="60"></div>
+        </div>
     </div>
     <div *ngSwitchCase="2">
         Section 2
@@ -11,4 +45,4 @@
     <div *ngSwitchCase="4">
         Section 4
     </div>
-</ng-container>
+</div>

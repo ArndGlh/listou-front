@@ -48,9 +48,11 @@
         </mat-list-item>
       </mat-list>
     </div>
-    <div fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
-        <h3>Paramètres du profil utilisateur</h3>
-        <profile-details [tabNumber]="selectedTab"></profile-details>
+    <div fxFlex="60" fxLayout="column">
+        <div fxFlex="20" fxLayout="row" fxLayoutAlign="center center">
+          <h2>Paramètres du profil utilisateur</h2>
+        </div>
+        <profile-details fxFlex="80" [tabNumber]="selectedTab"></profile-details>
     </div>
     <div fxFlex="20"></div>
   </div>

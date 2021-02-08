@@ -30,7 +30,6 @@ export class FooterComponent implements OnInit {
     this.urlService.getFooterUrls().subscribe(
       data => {
         this.footerUrls = data;
-        console.log(this.footerUrls);
       },
       err => {
         // this.footerUrls = JSON.parse(err.error).message;
