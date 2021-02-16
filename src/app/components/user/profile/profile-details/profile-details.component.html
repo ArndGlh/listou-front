@@ -9,7 +9,7 @@
             </div>
             <div fxFlex="60">
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card"/>
+                    <img id="profile-img" [src]="avatarUrl" class="profile-img-card"/>
 
                     <div fxLayout="column" [formGroup]="form">
                         <p>Télécharger un nouvel avatar (max 200 KB)</p>
