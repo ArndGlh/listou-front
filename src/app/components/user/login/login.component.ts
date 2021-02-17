@@ -58,14 +58,13 @@ export class LoginComponent implements OnInit {
 
         let roles: Role[] = [];
         let i = 0;
-        data.roles.forEach((role: string) => {
-          let r = new Role(i, role);
+        data.roles.forEach((role: Role) => {
+          let r = new Role(i, role.name);
           roles.push(r);
           i++;
         });
 
-        let user = new User(data.id, data.username, data.email, roles);
-        this.userService.login(user);
+        this.userService.login(data);
         this.router.navigate(['/home']);
       },
       err => {

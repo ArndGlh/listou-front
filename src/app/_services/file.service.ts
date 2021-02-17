@@ -15,16 +15,32 @@ export class FileService {
     private tokenStorageService: TokenStorageService) {
   }
 
-  public updateAvatar(fileInput: FileInput): Observable<any>  {
+  // public updateAvatarold(fileInput: FileInput): Observable<any>  {
+  //   const user = this.tokenStorageService.getUser();
+  //   const file_form: FileInput = fileInput;
+  //   const file = file_form.files[0];
+
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+  //   formData.append('userId', user.id);
+
+  //   return this.http.post(API_URL + 'upload', formData);
+
+  // }
+
+  public updateAvatar(fileInput: File, fileName: string,): Observable<any>  {
+    const uploadImageData = new FormData();
     const user = this.tokenStorageService.getUser();
-    const file_form: FileInput = fileInput;
-    const file = file_form.files[0];
 
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('userId', user.id);
+    uploadImageData.append('imageFile', fileInput, fileName);
+    uploadImageData.append('userId', user.id);
 
-    return this.http.post(API_URL + 'upload', formData);
+    return this.http.post(API_URL + 'upload', uploadImageData, { observe: 'response' });
+  }
 
+  public getAvatar(imageName: string): Observable<any> {
+    const getImageData = new FormData();
+    getImageData.append('imageName', imageName);
+    return this.http.post(API_URL, getImageData);
   }
 }

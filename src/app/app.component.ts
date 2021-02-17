@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
 
-  currentUser: User;
+  currentUser: any;
   userSubscription: Subscription;
 
   constructor(private tokenStorageService: TokenStorageService,
@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private toastr: ToastrService) {
-      this.currentUser = new User();
       this.userSubscription = new Subscription();
     }
 
@@ -61,7 +60,7 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    this.currentUser = new User();
+    this.currentUser = null;
     this.isLoggedIn = false;
     this.router.navigate(['home']);
     this.toastr.success('Déconnexion réussie !');

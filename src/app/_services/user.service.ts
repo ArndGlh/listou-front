@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { User } from '../components/user/models/user.model';
+import { Role } from '../components/user/models/role.model';
 
 const API_URL = 'http://localhost:8080/test/';
 
@@ -11,9 +12,11 @@ const API_URL = 'http://localhost:8080/test/';
 export class UserService {
 
   usersub = new Subject<User>();
-  currentUser = new User();
+  currentUser: User;
 
   constructor(private http: HttpClient) {
+    let roleTemp = [new Role(0, '')];
+    this.currentUser = new User('', '', roleTemp , 0);
   }
 
   emitUserSubject() {
