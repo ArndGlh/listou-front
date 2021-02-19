@@ -71,3 +71,8 @@ a {
 .mat-body {
   height: 100%;
 }
+
+::ng-deep.mat-list-base .mat-subheader:first-child {
+  margin-top: -8px;
+  color: black;
+}

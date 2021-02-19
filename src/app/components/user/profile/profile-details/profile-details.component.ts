@@ -24,10 +24,7 @@ export class ProfileDetailsComponent implements OnInit {
   private currentUser: any;
 
   public selectedFile!: File;
-  public retrievedImage: any;
   public base64Data: any;
-  public retrieveResonse: any;
-  public imageName: any;
 
   constructor(private _fb: FormBuilder,
     private fileService: FileService,
@@ -57,16 +54,12 @@ export class ProfileDetailsComponent implements OnInit {
 
   // ================================================================================================================
   public onFileChanged($event: any) {
-    console.log($event);
-    this.imageName = $event.target.files[0].name;
     this.selectedFile = $event.target.files[0];
   }
 
   public onUpload() {
-    console.log(this.selectedFile);
-    this.fileService.updateAvatar(this.selectedFile, this.imageName).subscribe( // TODO check value avatar file null
+    this.fileService.updateAvatar(this.selectedFile).subscribe( // TODO check value avatar file null
       (response) => {
-        console.log(response);
         if (response.status === 200) {
           this.toastr.success('Mise a jour réussie !');
         } else {
@@ -76,23 +69,17 @@ export class ProfileDetailsComponent implements OnInit {
     );
   }
 
-  //Gets called when the user clicks on retieve image button to get the image from back end
+  //Gets called when the user clicks on retrieve image button to get the image from back end
   public getImage() {
-    const user = this.tokenStorageService.getUser();
-
-    if(user.imageName !== null){
-      // this.avatarUrl = this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + this.arrayBufferToBase64(this.currentUser.avatar));
-      this.fileService.getAvatar(user.imageName).subscribe(
-        res => {
-          this.retrieveResonse = res;
-          this.base64Data = this.retrieveResonse.picByte;
-          this.avatarUrl = this.sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + this.base64Data);
+    this.fileService.getAvatar().subscribe(
+      res => {
+        if(res.avatar !== null){
+          this.avatarUrl = this.sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + res.avatar);
+        } else {
+          this.avatarUrl = "//ssl.gstatic.com/accounts/ui/avatar_2x.png";
         }
-      );
-    } else {
-      this.avatarUrl = '//ssl.gstatic.com/accounts/ui/avatar_2x.png';
-    }
 
-
+      }
+    );
   }
 }

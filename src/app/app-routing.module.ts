@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent, canActivate: [LoginGuard] },
   { path: 'mod', component: BoardModeratorComponent, canActivate: [LoginGuard] },
   { path: 'admin', component: BoardAdminComponent, canActivate: [LoginGuard] },
-  { path: 'listou', component: ListouComponent },
+  { path: 'listou', component: ListouComponent, canActivate: [LoginGuard] },
   { path: 'suggestions', component: SuggestionsComponent },
   { path: 'bug-report', component: BugReportComponent },
   { path: 'contact', component: ContactComponent },
