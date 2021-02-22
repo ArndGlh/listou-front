@@ -1,0 +1,42 @@
+<div fxLayout="row">
+    <div fxFlex="40">
+            <h3>Public Avatar</h3>
+            <p>Vous pouvez changer votre avatar public ici.</p>
+    </div>
+    <div fxFlex="60">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <img id="profile-img" [src]="avatarUrl" class="profile-img-card"/>
+
+            <div fxLayout="column">
+                <p>Télécharger un nouvel avatar</p>
+                <form [formGroup]="form">
+                    <mat-form-field appearance="outline">
+                        <ngx-mat-file-input formControlName="avatarFile" placeholder="Choisissez un fichier" [accept]="'image/*'" (change)="onFileChanged($event)"></ngx-mat-file-input>
+                        <mat-icon matSuffix>folder</mat-icon>
+                    </mat-form-field>
+
+                    <!-- <input type="file" (change)="onFileChanged($event)"> -->
+                    <mat-error *ngIf="form.get('avatarFile').hasError('maxContentSize')">
+                      La taille totale ne doit pas dépasser {{form.get('avatarFile')?.getError('maxContentSize').maxSize | byteFormat}} ({{form.get('avatarFile')?.getError('maxContentSize').actualSize
+                      | byteFormat}}).
+                    </mat-error>
+                    <mat-error *ngIf="!hasGoodExtension">
+                        Le format doit être jpg, jpeg ou png.
+                      </mat-error>
+                </form>
+                <mat-divider class="divider"></mat-divider>
+                <!-- <button mat-raised-button class="button" (click)="onSubmit()" [disabled]="this.form.get('avatarFile') == undefined">Changer d'avatar</button> -->
+                <button mat-raised-button class="button" (click)="onUpload()" [disabled]="this.selectedFile == undefined || !hasGoodExtension">Changer d'avatar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<mat-divider class="divider"></mat-divider>
+<div fxLayout="row">
+    <div fxFlex="40">
+        <h3>Paramètres principaux</h3>
+        <p>Ce qui apparaîtra sur votre profil</p>
+    </div>
+    <div fxFlex="60"></div>
+</div>
