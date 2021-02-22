@@ -26,3 +26,12 @@
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: $font-color;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+    color: $font-color;
+}

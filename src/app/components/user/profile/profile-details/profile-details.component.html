@@ -11,20 +11,26 @@
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <img id="profile-img" [src]="avatarUrl" class="profile-img-card"/>
 
-                    <div fxLayout="column" [formGroup]="form">
-                        <p>Télécharger un nouvel avatar (max 200 KB)</p>
-                        <form appearance="outline">
-                            <!-- <ngx-mat-file-input formControlName="avatarFile" valuePlaceholder="Choisissez un fichier" [accept]="'image/*'" (change)="onFileChanged($event)"></ngx-mat-file-input> -->
-                            <input type="file" (change)="onFileChanged($event)">
-                            <mat-icon matSuffix>folder</mat-icon>
+                    <div fxLayout="column">
+                        <p>Télécharger un nouvel avatar</p>
+                        <form [formGroup]="form">
+                            <mat-form-field appearance="outline">
+                                <ngx-mat-file-input formControlName="avatarFile" placeholder="Choisissez un fichier" [accept]="'image/*'" (change)="onFileChanged($event)"></ngx-mat-file-input>
+                                <mat-icon matSuffix>folder</mat-icon>
+                            </mat-form-field>
+
+                            <!-- <input type="file" (change)="onFileChanged($event)"> -->
                             <mat-error *ngIf="form.get('avatarFile').hasError('maxContentSize')">
-                              The total size must not exceed {{form.get('avatarFile')?.getError('maxContentSize').maxSize | byteFormat}} ({{form.get('avatarFile')?.getError('maxContentSize').actualSize
+                              La taille totale ne doit pas dépasser {{form.get('avatarFile')?.getError('maxContentSize').maxSize | byteFormat}} ({{form.get('avatarFile')?.getError('maxContentSize').actualSize
                               | byteFormat}}).
                             </mat-error>
+                            <mat-error *ngIf="!hasGoodExtension">
+                                Le format doit être jpg, jpeg ou png.
+                              </mat-error>
                         </form>
                         <mat-divider class="divider"></mat-divider>
                         <!-- <button mat-raised-button class="button" (click)="onSubmit()" [disabled]="this.form.get('avatarFile') == undefined">Changer d'avatar</button> -->
-                        <button mat-raised-button class="button" (click)="onUpload()" [disabled]="this.form.get('avatarFile') == undefined">Changer d'avatar</button>
+                        <button mat-raised-button class="button" (click)="onUpload()" [disabled]="this.selectedFile == undefined || !hasGoodExtension">Changer d'avatar</button>
 
                     </div>
                 </div>

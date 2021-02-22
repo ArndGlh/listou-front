@@ -24,6 +24,7 @@ import { BugReportComponent } from './components/application-services/bug-report
 import { ContactComponent } from './components/application-services/contact/contact.component';
 import { ProfileDetailsComponent } from './components/user/profile/profile-details/profile-details.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     }),
     BrowserAnimationsModule,
     SharedModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RxReactiveFormsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

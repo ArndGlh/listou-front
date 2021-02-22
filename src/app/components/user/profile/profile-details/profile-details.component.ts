@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { FileInput, FileValidator } from 'ngx-material-file-input';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
+import { FileValidator } from 'ngx-material-file-input';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { FileService } from 'src/app/_services/file.service';
@@ -25,6 +26,8 @@ export class ProfileDetailsComponent implements OnInit {
 
   public selectedFile!: File;
   public base64Data: any;
+  public hasGoodExtension = true;
+  // public sendAvatarButtonDisabled: boolean;
 
   constructor(private _fb: FormBuilder,
     private fileService: FileService,
@@ -36,10 +39,13 @@ export class ProfileDetailsComponent implements OnInit {
       this.form = this._fb.group({
         avatarFile: [
           undefined,
-          [FileValidator.maxContentSize(this.maxSize)]
+          [ FileValidator.maxContentSize(this.maxSize),
+            RxwebValidators.extension({extensions:["jpeg","png", "jpg"]})
+          ]
         ]
       });
       this.avatarUrl = '';
+      // this.sendAvatarButtonDisabled = (this.selectedFile == undefined || !this.hasGoodExtension) &&
    }
 
   ngOnInit(): void {
@@ -54,7 +60,24 @@ export class ProfileDetailsComponent implements OnInit {
 
   // ================================================================================================================
   public onFileChanged($event: any) {
-    this.selectedFile = $event.target.files[0];
+    console.log(this.form);
+    if($event.target.files[0]){
+      this.validateType($event);
+      this.selectedFile = $event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(this.selectedFile);
+      reader.onload = () => {
+        let file = reader.result ?? '';
+        this.avatarUrl = this.sanitizer.bypassSecurityTrustUrl(file.toString());
+      };
+    }
+  }
+
+  public validateType($event: any): void{
+    let currentExt = $event.target.files[0].type;
+    const acceptedExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
+
+    this.hasGoodExtension = acceptedExtensions.findIndex(el => el == currentExt) != -1;
   }
 
   public onUpload() {
@@ -69,7 +92,6 @@ export class ProfileDetailsComponent implements OnInit {
     );
   }
 
-  //Gets called when the user clicks on retrieve image button to get the image from back end
   public getImage() {
     this.fileService.getAvatar().subscribe(
       res => {
