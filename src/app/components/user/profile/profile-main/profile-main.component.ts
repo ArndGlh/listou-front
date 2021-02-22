@@ -5,6 +5,7 @@ import { FileValidator } from 'ngx-material-file-input';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { FileService } from 'src/app/_services/file.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { UserService } from 'src/app/_services/user.service';
 import { User } from '../../models/user.model';
 
@@ -14,22 +15,24 @@ import { User } from '../../models/user.model';
   styleUrls: ['./profile-main.component.scss']
 })
 export class ProfileMainComponent implements OnInit {
-  public form: FormGroup;
-  readonly maxSize = 200000;
-
-  public avatarUrl: SafeUrl;
   public userSubscription: Subscription;
   private currentUser: any;
 
+  public form: FormGroup;
+  readonly maxSize = 200000;
+  public avatarUrl: SafeUrl;
   public selectedFile!: File;
   public base64Data: any;
   public hasGoodExtension = true;
+
+  public username: string;
 
   constructor(private _fb: FormBuilder,
     private fileService: FileService,
     private toastr: ToastrService,
     private sanitizer : DomSanitizer,
-    private userService: UserService) {
+    private userService: UserService,
+    private tokenStorageService: TokenStorageService) {
       this.userSubscription = new Subscription();
       this.form = this._fb.group({
         avatarFile: [
@@ -38,6 +41,7 @@ export class ProfileMainComponent implements OnInit {
         ]
       });
       this.avatarUrl = '';
+      this.username = '';
    }
 
   ngOnInit(): void {
@@ -46,7 +50,7 @@ export class ProfileMainComponent implements OnInit {
         this.currentUser = user;
       }
     );
-
+    this.username = this.tokenStorageService.getUser()['username'];
     this.getImage();
   }
 
@@ -93,6 +97,12 @@ export class ProfileMainComponent implements OnInit {
           this.avatarUrl = "//ssl.gstatic.com/accounts/ui/avatar_2x.png";
         }
       }
+    );
+  }
+
+  public onSubmit(){
+    this.userService.updateUsername(this.username).subscribe(
+
     );
   }
 }

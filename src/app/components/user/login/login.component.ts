@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
   public onSubmit(): void {
     this.authService.login(this.username, this.password).subscribe(
       data => {
-        console.log(data);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
@@ -69,7 +68,6 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.toastr.error('Connexion échouée !');
-        // this.errorMessage = err.error.message;
       }
     );
   }

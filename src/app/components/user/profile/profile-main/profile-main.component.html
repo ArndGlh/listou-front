@@ -38,5 +38,16 @@
         <h3>Paramètres principaux</h3>
         <p>Ce qui apparaîtra sur votre profil</p>
     </div>
-    <div fxFlex="60"></div>
+    <div fxFlex="60">
+        <div fxLayout="column" fxLayoutAlign="space-around stretch" name="form" novalidate>
+            <label class="label">Nom d'utilisateur</label>
+            <input class="input" name="username" [(ngModel)]="username"/>
+        </div>
+    </div>
+</div>
+<div fxLayout="row">
+    <div fxFlex="40"></div>
+    <div fxFlex>
+        <button mat-raised-button class="button" (click)="onSubmit()">Mettre a jour le profil</button>
+    </div>
 </div>
