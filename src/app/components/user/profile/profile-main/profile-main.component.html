@@ -16,7 +16,7 @@
                     </mat-form-field>
 
                     <!-- <input type="file" (change)="onFileChanged($event)"> -->
-                    <mat-error *ngIf="form.get('avatarFile').hasError('maxContentSize')">
+                    <mat-error *ngIf="form.get('avatarFile')!.hasError('maxContentSize')">
                       La taille totale ne doit pas dépasser {{form.get('avatarFile')?.getError('maxContentSize').maxSize | byteFormat}} ({{form.get('avatarFile')?.getError('maxContentSize').actualSize
                       | byteFormat}}).
                     </mat-error>

@@ -59,7 +59,7 @@ export class ProfileMainComponent implements OnInit {
     console.log(this.form);
     if($event.target.files[0]){
       this.validateType($event);
-      this.selectedFile = $event.target.files[0];
+      this.selectedFile = $event.target.files![0];
       const reader = new FileReader();
       reader.readAsDataURL(this.selectedFile);
       reader.onload = () => {
@@ -102,7 +102,15 @@ export class ProfileMainComponent implements OnInit {
 
   public onSubmit(){
     this.userService.updateUsername(this.username).subscribe(
-
+      (response) => {
+        if (response.status === 200) {
+          this.userService.currentUser.username = this.username;
+          this.userService.emitUserSubject();
+          this.toastr.success('Mise a jour réussie !');
+        } else {
+          this.toastr.error('Mise a jour échouée !');
+        }
+      }
     );
   }
 }

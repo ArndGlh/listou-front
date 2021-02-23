@@ -53,6 +53,7 @@
         <button *ngIf="isLoggedIn" mat-icon-button class="icon" routerLink="profile">
           <mat-icon svgIcon="account" aria-hidden="false"></mat-icon>
         </button>
+        <ng-container *ngIf="currentUser">{{ currentUser.username }}</ng-container>
         <a *ngIf="isLoggedIn" (click)="logout()" class="link">Déconnexion</a>
       </mat-toolbar>
 
