@@ -28,6 +28,7 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { ProfileMainComponent } from './components/user/profile/profile-main/profile-main.component';
 import { ProfileAccountComponent } from './components/user/profile/profile-account/profile-account.component';
 import { ProfileNotificationsComponent } from './components/user/profile/profile-notifications/profile-notifications.component';
+import { ProfilePreferencesComponent } from './components/user/profile/profile-preferences/profile-preferences.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ProfileNotificationsComponent } from './components/user/profile/profile
     ProfileDetailsComponent,
     ProfileMainComponent,
     ProfileAccountComponent,
-    ProfileNotificationsComponent
+    ProfileNotificationsComponent,
+    ProfilePreferencesComponent
   ],
   imports: [
     BrowserModule,
