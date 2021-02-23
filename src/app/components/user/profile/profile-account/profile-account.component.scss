@@ -5,25 +5,6 @@
     color: $background-color;
 }
 
-.profile-img-card {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 10px;
-    margin-left: 30px;
-    margin-right: 30px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-
-.divider {
-    background-color: $font-color;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
-
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: $font-color;
 }
@@ -46,4 +27,31 @@ input {
 
 input:focus{
     outline: none;
+}
+
+
+.profile-img-card {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.withRow {
+    width: 711px;
+}
+
+.divider {
+    background-color: $font-color;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.margin {
+    margin-top: 20px;
 }

@@ -1,0 +1,28 @@
+<div fxLayout="row" class="withRow">
+    <div fxFlex="40">
+        <h3>Paramètres de votre compte</h3>
+        <p>Changez les informations de votre compte</p>
+    </div>
+    <div fxFlex="60">
+        <div fxLayout="column" fxLayoutAlign="space-around stretch" name="form" novalidate>
+            <label class="label">Adresse mail</label>
+            <input class="input" name="email" [(ngModel)]="email"/>
+        </div>
+        <mat-divider class="divider"></mat-divider>
+        <div fxLayout="column" fxLayoutAlign="space-around stretch" name="form" novalidate>
+            <label class="label">Nouveau mot de passe</label>
+            <input class="input" name="email" [(ngModel)]="password"/>
+
+            <label class="label margin">Confirmez le mot de passe</label>
+            <input class="input" name="email" [(ngModel)]="passwordConfirm"/>
+        </div>
+    </div>
+</div>
+<mat-divider class="divider"></mat-divider>
+<div fxLayout="row">
+    <div fxFlex="40"></div>
+    <div fxFlex>
+        <button mat-raised-button class="button" (click)="onSubmit()">
+            Mettre a jour le profil</button>
+    </div>
+</div>

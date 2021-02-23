@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  firstLogin: boolean;
 
   currentUser: any;
   userSubscription: Subscription;
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private toastr: ToastrService) {
       this.userSubscription = new Subscription();
+      this.firstLogin = true;
     }
 
   ngOnInit(): void {
@@ -37,7 +39,10 @@ export class AppComponent implements OnInit {
       (user: User) => {
         this.currentUser = user;
         this.isLoggedIn = true;
-        this.toastr.success('Connexion réussie !');
+        if(this.firstLogin) {
+          this.toastr.success('Connexion réussie !');
+        }
+        this.firstLogin = false;
       }
     );
 

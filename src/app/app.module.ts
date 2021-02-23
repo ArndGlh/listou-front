@@ -26,6 +26,7 @@ import { ProfileDetailsComponent } from './components/user/profile/profile-detai
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { ProfileMainComponent } from './components/user/profile/profile-main/profile-main.component';
+import { ProfileAccountComponent } from './components/user/profile/profile-account/profile-account.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ProfileMainComponent } from './components/user/profile/profile-main/pro
     BugReportComponent,
     ContactComponent,
     ProfileDetailsComponent,
-    ProfileMainComponent
+    ProfileMainComponent,
+    ProfileAccountComponent
   ],
   imports: [
     BrowserModule,

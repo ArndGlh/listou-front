@@ -38,4 +38,22 @@ export class UserService {
     uploadUserData.append('userId', user.id);
     return this.http.post(API_URL + 'username', uploadUserData, { observe: 'response' });
   }
+
+  updateEmail(email: string): Observable<any> {
+    const uploadUserData = new FormData();
+    const user = this.tokenStorageService.getUser();
+
+    uploadUserData.append('email', email);
+    uploadUserData.append('userId', user.id);
+    return this.http.post(API_URL + 'email', uploadUserData, { observe: 'response' });
+  }
+
+  updatePassword(password: string): Observable<any> {
+    const uploadUserData = new FormData();
+    const user = this.tokenStorageService.getUser();
+
+    uploadUserData.append('password', password);
+    uploadUserData.append('userId', user.id);
+    return this.http.post(API_URL + 'password', uploadUserData, { observe: 'response' });
+  }
 }
