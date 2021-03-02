@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ComSubject } from '../components/application-services/models/com-subject';
+import { Suggestion } from '../components/application-services/models/suggestion.model';
 import { TokenStorageService } from './token-storage.service';
 
 const API_URL = 'http://localhost:8080/communication/';
@@ -14,14 +15,15 @@ export class CommunicationService {
   constructor(private http: HttpClient,
     private tokenStorageService: TokenStorageService) { }
 
-  public updateAvatar(fileInput: File): Observable<any>  {
-    const uploadImageData = new FormData();
+  public sendSuggestion(suggestion: Suggestion): Observable<any>  {
     const user = this.tokenStorageService.getUser();
+    const suggestionData = new FormData();
 
-    uploadImageData.append('imageFile', fileInput);
-    uploadImageData.append('userId', user.id);
+    suggestionData.append('userId', user.id);
+    suggestionData.append('suggestionSubject', suggestion.subjectSuggestion);
+    suggestionData.append('suggestionComment', suggestion.comment);
 
-    return this.http.post(API_URL + 'upload', uploadImageData, { observe: 'response' });
+    return this.http.post(API_URL + 'suggestion', suggestionData, { observe: 'response' });
   }
 
   public getSuggestionSubjects(): Observable<ComSubject[]> {

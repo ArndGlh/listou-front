@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { fadeIn } from 'src/app/shared/animations/fade-in';
 import { CommunicationService } from 'src/app/_services/communication.service';
 import { ComSubject } from '../models/com-subject';
+import { Suggestion } from '../models/suggestion.model';
 
 @Component({
   selector: 'suggestions',
@@ -16,9 +18,12 @@ export class SuggestionsComponent implements OnInit {
 
   public suggestionFormGroup!: FormGroup;
   public suggestionSubjects!: any[];
+  public suggestionEnvoyee = false;
 
   constructor(private communicationService: CommunicationService,
-    private fb: FormBuilder) {}
+    private fb: FormBuilder,
+    private toastr: ToastrService
+    ) {}
 
   ngOnInit(): void {
     this.communicationService.getSuggestionSubjects().subscribe(
@@ -30,7 +35,7 @@ export class SuggestionsComponent implements OnInit {
 
         this.suggestionFormGroup = this.fb.group({
           suggestionSubject: ['', Validators.required],
-          comment: ['', [Validators.required, Validators.maxLength(1000)]]
+          comment: ['', [Validators.required, Validators.maxLength(1000), Validators.minLength(10)]]
         });
       }
     );
@@ -45,5 +50,18 @@ export class SuggestionsComponent implements OnInit {
 
   public onSubmit(): void{
     console.log(this.suggestionFormGroup);
+    let suggestionRequest = new Suggestion(this.suggestionFormGroup.controls['suggestionSubject'].value, this.suggestionFormGroup.controls['comment'].value);
+    console.log(suggestionRequest);
+
+    this.communicationService.sendSuggestion(suggestionRequest).subscribe(
+      (response) => {
+        if (response.status === 200) {
+          this.suggestionEnvoyee = true;
+          this.toastr.success('Suggestion envoyée !');
+        } else {
+          this.toastr.error('Envoi de la suggestion échoué !');
+        }
+      }
+    );
   }
 }

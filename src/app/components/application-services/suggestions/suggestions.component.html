@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="center center" [@simpleFadeAnimation]="'in'">
-    <mat-card fxFlex="40" fxFlexOffset="30" fxLayout="column" fxLayoutAlign="space-evenly stretch" class="card">
+    <mat-card *ngIf="!suggestionEnvoyee" fxFlex="40" fxFlexOffset="30" fxLayout="column" fxLayoutAlign="space-evenly stretch" class="card">
       <mat-card-header fxFlex="20" fxLayout="column" fxLayoutAlign="center center">
         <mat-card-title>Partagez vos suggestions</mat-card-title>
         <p>Vous pouvez partager vos suggestions concernant les applications web, le site en lui-même, comme vous voulez !
@@ -29,7 +29,16 @@
       </mat-card-content>
       <mat-card-actions>
         <div fxFlex></div>
-        <button mat-raised-button class="button" (click)="onSubmit()">Envoyer</button>
+        <button *ngIf="suggestionFormGroup" mat-raised-button class="button" [disabled]="suggestionFormGroup.invalid" (click)="onSubmit()">Envoyer</button>
       </mat-card-actions>
+    </mat-card>
+    <mat-card *ngIf="suggestionEnvoyee" fxFlex="40" fxFlexOffset="30" fxLayout="column" fxLayoutAlign="space-evenly stretch" class="card">
+      <mat-card-header fxFlex="20" fxLayout="column" fxLayoutAlign="center center">
+        <mat-card-title>Partagez vos suggestions</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxFlex>
+        <h3>Merci beaucoup pour votre suggestion, et merci à vous de contribuer à l'amélioration continue de cette application web !
+          Votre suggestion va être traitée avec considération, vous serez informé(e) de la prise en compte de celle-ci ou non !</h3>
+      </mat-card-content>
     </mat-card>
   </div>
