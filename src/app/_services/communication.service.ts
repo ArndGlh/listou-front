@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BugReport } from '../components/application-services/models/bugreport.model';
 import { ComSubject } from '../components/application-services/models/com-subject';
 import { Suggestion } from '../components/application-services/models/suggestion.model';
 import { TokenStorageService } from './token-storage.service';
@@ -24,6 +25,17 @@ export class CommunicationService {
     suggestionData.append('suggestionComment', suggestion.comment);
 
     return this.http.post(API_URL + 'suggestion', suggestionData, { observe: 'response' });
+  }
+
+  public sendBugreport(bugreport: BugReport): Observable<any>  {
+    const user = this.tokenStorageService.getUser();
+    const bugreportData = new FormData();
+
+    bugreportData.append('userId', user.id);
+    bugreportData.append('bugreportSubject', bugreport.subjectBugreport);
+    bugreportData.append('bugreportComment', bugreport.comment);
+
+    return this.http.post(API_URL + 'bugreport', bugreportData, { observe: 'response' });
   }
 
   public getSuggestionSubjects(): Observable<ComSubject[]> {

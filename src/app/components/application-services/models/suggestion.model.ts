@@ -1,5 +1,3 @@
-import { ComSubject } from "./com-subject";
-
 export class Suggestion {
     subjectSuggestion: string;
     comment: string;

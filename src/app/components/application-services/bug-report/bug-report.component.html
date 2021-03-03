@@ -1,1 +1,44 @@
-<p>bug-report works!</p>
+<div fxLayout="row" fxLayoutAlign="center center" [@simpleFadeAnimation]="'in'">
+    <mat-card *ngIf="!bugreportEnvoyee" fxFlex="40" fxFlexOffset="30" fxLayout="column" fxLayoutAlign="space-evenly stretch" class="card">
+      <mat-card-header fxFlex="20" fxLayout="column" fxLayoutAlign="center center">
+        <mat-card-title>Signalez un bug</mat-card-title>
+        <p>Vous pouvez signaler un bug concernant les applications web, le site en lui-même, tout ce que vous trouverez pourra nous aider !
+            Remplissez juste le formulaire ci-dessous :
+        </p>
+      </mat-card-header>
+      <mat-card-content fxFlex>
+        <form *ngIf="bugreportFormGroup" fxLayout="column" fxLayoutAlign="space-around stretch" [formGroup]="bugreportFormGroup" novalidate>
+            <mat-form-field appearance="outline">
+                <mat-label>Sujet</mat-label>
+                <mat-select formControlName="bugreportSubject">
+                    <mat-option *ngFor="let subject of bugreportSubjects" [value]="subject.value">
+                    {{ subject.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxLayout="column" fxLayoutAlign="stretch stretch">
+                <mat-label>Décrivez le bug ( {{ bugreportFormGroup.controls['comment'].value.length }} / 1000 )</mat-label>
+                <textarea cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="7"
+                    formControlName="comment"
+                    matInput placeholder="Expliquez le bug...">
+                </textarea>
+                <mat-error *ngIf="bugreportFormGroup.controls['comment'].hasError('maxLength')"></mat-error>
+            </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <div fxFlex></div>
+        <button *ngIf="bugreportFormGroup" mat-raised-button class="button" [disabled]="bugreportFormGroup.invalid" (click)="onSubmit()">Envoyer</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card *ngIf="bugreportEnvoyee" fxFlex="40" fxFlexOffset="30" fxLayout="column" fxLayoutAlign="space-evenly stretch" class="card">
+      <mat-card-header fxFlex="20" fxLayout="column" fxLayoutAlign="center center">
+        <mat-card-title>Signalez un bug</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxFlex>
+        <h3>Merci beaucoup pour votre signalement, et merci à vous de contribuer à l'amélioration continue de cette application web !
+          Ce signalement va être traitée avec considération, vous serez informé(e) de la prise en compte de celle-ci, cela sera sûrement corrigé dans un futur patch !</h3>
+      </mat-card-content>
+    </mat-card>
+  </div>
