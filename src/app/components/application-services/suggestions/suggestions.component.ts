@@ -49,9 +49,7 @@ export class SuggestionsComponent implements OnInit {
   }
 
   public onSubmit(): void{
-    console.log(this.suggestionFormGroup);
     let suggestionRequest = new Suggestion(this.suggestionFormGroup.controls['suggestionSubject'].value, this.suggestionFormGroup.controls['comment'].value);
-    console.log(suggestionRequest);
 
     this.communicationService.sendSuggestion(suggestionRequest).subscribe(
       (response) => {

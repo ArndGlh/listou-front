@@ -47,9 +47,7 @@ export class BugReportComponent implements OnInit {
   }
 
   public onSubmit(): void{
-    console.log(this.bugreportFormGroup);
     let bugreportRequest = new BugReport(this.bugreportFormGroup.controls['bugreportSubject'].value, this.bugreportFormGroup.controls['comment'].value);
-    console.log(bugreportRequest);
 
     this.communicationService.sendBugreport(bugreportRequest).subscribe(
       (response) => {

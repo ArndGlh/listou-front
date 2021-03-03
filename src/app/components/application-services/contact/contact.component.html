@@ -1,1 +1,35 @@
-<p>contact works!</p>
+<div fxLayout="row" fxLayoutAlign="center center" [@simpleFadeAnimation]="'in'">
+    <mat-card *ngIf="!contactEnvoyee" fxFlex="40" fxFlexOffset="30" fxLayout="column" fxLayoutAlign="space-evenly stretch" class="card">
+      <mat-card-header fxFlex="20" fxLayout="column" fxLayoutAlign="center center">
+        <mat-card-title>Nous contacter</mat-card-title>
+        <p>Vous pouvez ici nous contacter, nous ferons tout notre possible pour vous répondre dans les plus bref délais.
+            Remplissez juste le formulaire ci-dessous :
+        </p>
+      </mat-card-header>
+      <mat-card-content fxFlex>
+        <form *ngIf="contactFormGroup" fxLayout="column" fxLayoutAlign="space-around stretch" [formGroup]="contactFormGroup" novalidate>
+            <mat-form-field appearance="outline" fxLayout="column" fxLayoutAlign="stretch stretch">
+                <mat-label>Commentaire ( {{ contactFormGroup.controls['comment'].value.length }} / 1000 )</mat-label>
+                <textarea cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="7"
+                    formControlName="comment"
+                    matInput placeholder="Raison de votre contact...">
+                </textarea>
+                <mat-error *ngIf="contactFormGroup.controls['comment'].hasError('maxLength')"></mat-error>
+            </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <div fxFlex></div>
+        <button *ngIf="contactFormGroup" mat-raised-button class="button" [disabled]="contactFormGroup.invalid" (click)="onSubmit()">Envoyer</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card *ngIf="contactEnvoyee" fxFlex="40" fxFlexOffset="30" fxLayout="column" fxLayoutAlign="space-evenly stretch" class="card">
+      <mat-card-header fxFlex="20" fxLayout="column" fxLayoutAlign="center center">
+        <mat-card-title>Nous contacter</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxFlex>
+        <h3>Merci beaucoup pour votre commentaire, et merci à vous de contribuer à l'amélioration continue de cette application web !
+          Vous serez informé(e) prochainement pour un éventuel retour sur votre contact !</h3>
+      </mat-card-content>
+    </mat-card>
+  </div>
