@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { fadeIn } from 'src/app/shared/animations/fade-in';
 import { CommunicationService } from 'src/app/_services/communication.service';
-import { ComSubject } from '../models/com-subject';
 import { Suggestion } from '../models/suggestion.model';
 
 @Component({
