@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenStorageService } from './token-storage.service';
 
-const API_URL = 'http://localhost:8080/test/';
+const API_URL = 'http://localhost:8080/board/';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,14 @@ export class BoardService {
 
     getAdminBoard(): Observable<any> {
         return this.http.get(API_URL + 'admin', { responseType: 'text' });
+    }
+
+    public notifUser(comment: string, userId: string){
+        const userData = new FormData();
+
+        userData.append('userId', userId);
+        userData.append('notificationComment', comment);
+
+        return this.http.post(API_URL + '', userData, { observe: 'response' });
     }
 }

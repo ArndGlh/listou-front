@@ -1,0 +1,88 @@
+
+@import '/src/styles/common.scss';
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.example-radio-button {
+    margin: 5px;
+}
+
+.button-color {
+    background-color: $background-color;
+    color: white;
+}
+
+mat-icon {
+    cursor: default;
+}
+
+.overflow {
+    text-overflow: ellipsis;
+}
+
+.mat-dialog-actions {
+    padding: 25px 0;
+}
+
+.custom-panel {
+    padding: 20px;
+    margin-top: -28px;
+    margin-bottom: -24px;
+}
+
+.margin-button {
+    margin-right: 10px;
+}
+
+.red {
+    color: red;
+}
+
+.margin-b {
+    margin-bottom: 17px;
+}
+
+::ng-deep .mat-tooltip {
+z-index: 50;
+}
+
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: black;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: black;
+}
+
+.margin-tb {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.div-motif {
+    padding-top: 20px;
+}
+
+// Radio buttons ====
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $background-color;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: $background-color;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple) {
+    background-color: $background-color;
+}
+
+::ng-deep .mat-radio-button .mat-ripple-element {
+    background-color: $background-color;
+}
+
+
+

@@ -1,5 +1,44 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<div class="card">
+    <p-table #dt [value]="notifications" [rows]="10" [paginator]="true" [globalFilterFields]="['username','text','type','category', 'date', 'etat']"
+        [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h2 class="p-m-0">Gérer les messages</h2>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Rechercher..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="username">User <p-sortIcon field="username"></p-sortIcon></th>
+                <th pSortableColumn="text">Commentaire <p-sortIcon field="text"></p-sortIcon></th>
+                <th pSortableColumn="type">Type <p-sortIcon field="type"></p-sortIcon></th>
+                <th pSortableColumn="category">Categorie <p-sortIcon field="category"></p-sortIcon></th>
+                <th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
+                <th pSortableColumn="etat">Etat <p-sortIcon field="etat"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-notif>
+            <tr>
+                <td>{{notif.username}}</td>
+                <td>{{notif.text}}</td>
+                <td>{{notif.type}}</td>
+                <td>{{notif.category}}</td>
+                <td>{{notif.date | date:'short'}}</td>
+                <!-- <td>{{notif.state}}</td> -->
+                <span [class]="'notif-badge status-' + notif.state.toLowerCase()">{{ replaceUnderscore(notif.state) }}</span>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openDialog(notif)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                Au total il y a {{notifications ? notifications.length : 0 }} notifications.
+            </div>
+        </ng-template>
+    </p-table>
 </div>

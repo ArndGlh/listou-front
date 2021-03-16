@@ -67,6 +67,8 @@ export class AppComponent implements OnInit {
     this.tokenStorageService.signOut();
     this.currentUser = null;
     this.isLoggedIn = false;
+    this.showAdminBoard = false;
+    this.showModeratorBoard = false;
     this.router.navigate(['home']);
     this.toastr.success('Déconnexion réussie !');
   }

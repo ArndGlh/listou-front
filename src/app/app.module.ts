@@ -30,6 +30,26 @@ import { ProfileAccountComponent } from './components/user/profile/profile-accou
 import { ProfileNotificationsComponent } from './components/user/profile/profile-notifications/profile-notifications.component';
 import { ProfilePreferencesComponent } from './components/user/profile/profile-preferences/profile-preferences.component';
 
+import { TableModule } from 'primeng/table';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule} from 'primeng/toast';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToolbarModule } from 'primeng/toolbar';
+import { RatingModule } from 'primeng/rating';
+import { DialogDetailsComponent } from './components/boards/board-admin/dialog-details/dialog-details.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +68,8 @@ import { ProfilePreferencesComponent } from './components/user/profile/profile-p
     ProfileMainComponent,
     ProfileAccountComponent,
     ProfileNotificationsComponent,
-    ProfilePreferencesComponent
+    ProfilePreferencesComponent,
+    DialogDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -66,10 +87,28 @@ import { ProfilePreferencesComponent } from './components/user/profile/profile-p
     BrowserAnimationsModule,
     SharedModule,
     FlexLayoutModule,
-    RxReactiveFormsModule
+    RxReactiveFormsModule,
+    TableModule,
+    MultiSelectModule,
+    ContextMenuModule,
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    RadioButtonModule,
+    InputNumberModule,
+    ConfirmDialogModule,
+    InputTextareaModule,
+    ToastModule,
+    CalendarModule,
+    DropdownModule,
+    ProgressBarModule,
+    FileUploadModule,
+    ToolbarModule,
+    RatingModule
   ],
-  providers: [authInterceptorProviders],
-  bootstrap: [AppComponent]
+  providers: [authInterceptorProviders, ConfirmationService],
+  bootstrap: [AppComponent],
+  entryComponents: [DialogDetailsComponent],
 })
 export class AppModule { }
 

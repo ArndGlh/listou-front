@@ -1,0 +1,30 @@
+<div class="custom-panel">
+    <h2 class="bold margin-tb" mat-dialog-title>Répondre à une notification</h2>
+    <div mat-dialog-content class="div-motif" [formGroup]="notificationFormGroup">
+        <mat-form-field fxLayout="column" fxLayoutAlign="stretch stretch" appearance="outline">
+            <mat-label>Commentaire de : {{ notif.username }}</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" disabled [value]="notif.text"></textarea>
+          </mat-form-field>
+
+        <mat-form-field fxLayout="column" fxLayoutAlign="stretch stretch" appearance="outline">
+            <mat-label>Laissez un commentaire</mat-label>
+            <textarea cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="10"
+                formControlName="comment" matInput placeholder="Ecrivez un commentaire...">
+            </textarea>
+        </mat-form-field>
+
+        <p class="bold">Etat :
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName="state">
+            <div fxLayout="column" fxLayoutAlign="center stretch">
+                <mat-radio-button class="example-radio-button" value="NOUVEAU">Nouveau</mat-radio-button>
+                <mat-radio-button class="example-radio-button" value="EN_COURS">En cours</mat-radio-button>
+                <mat-radio-button class="example-radio-button" value="FINI">Fini</mat-radio-button>
+                <mat-divider class="margin-tb"></mat-divider>
+            </div>
+        </mat-radio-group>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" class="margin-b">
+        <button mat-raised-button class="margin-button" (click)="close()">Annuler</button>
+        <button mat-raised-button class="button-color" (click)="valid()">Valider</button>
+    </div>
+</div>
