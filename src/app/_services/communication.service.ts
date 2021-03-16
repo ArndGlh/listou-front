@@ -37,7 +37,7 @@ export class CommunicationService {
     bugreportData.append('bugreportSubject', bugreport.subjectBugreport);
     bugreportData.append('bugreportComment', bugreport.comment);
 
-    return this.http.post(API_URL + 'bugreport', bugreportData, { observe: 'response' });
+    return this.http.post(API_URL + 'bugReport', bugreportData, { observe: 'response' });
   }
 
   public sendContact(contact: Contact): Observable<any>  {
@@ -60,7 +60,7 @@ export class CommunicationService {
   }
 
   public getBugReports(): Observable<any> {
-    return this.http.get(API_URL + 'bugreport');
+    return this.http.get(API_URL + 'bugReport');
   }
 
   public getContacts(): Observable<any> {

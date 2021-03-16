@@ -28,8 +28,11 @@
                 <td>{{notif.type}}</td>
                 <td>{{notif.category}}</td>
                 <td>{{notif.date | date:'short'}}</td>
-                <!-- <td>{{notif.state}}</td> -->
-                <span [class]="'notif-badge status-' + notif.state.toLowerCase()">{{ replaceUnderscore(notif.state) }}</span>
+                <td>
+                    <div [ngClass]="stateClass(notif.state)">
+                        {{ replaceUnderscore(notif.state) }}
+                    </div>
+                </td>
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openDialog(notif)"></button>
                 </td>

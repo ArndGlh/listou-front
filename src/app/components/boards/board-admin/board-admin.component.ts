@@ -97,7 +97,6 @@ export class BoardAdminComponent implements OnInit {
       }
 
     public saveNotif(){
-        console.log('notif', this.notifToSave);
         switch(this.notifToSave.oldNotif.type){
             case 'Suggestion':
                 this.notifToSave.oldNotif.state = this.notifToSave.form.state;
@@ -155,5 +154,18 @@ export class BoardAdminComponent implements OnInit {
 
     public replaceUnderscore(str: string): string{
         return str.replace('_', ' ');
+    }
+
+    public stateClass(state: string):string {
+        switch(state){
+            case 'NOUVEAU':
+                return 'stateNouveau';
+            case 'EN_COURS':
+                return 'stateEnCours';
+            case 'FINI':
+                return 'stateFini';
+            default:
+                return 'stateNouveau';
+        }
     }
 }
