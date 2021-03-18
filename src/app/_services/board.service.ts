@@ -29,11 +29,13 @@ export class BoardService {
         return this.http.get(API_URL + 'admin', { responseType: 'text' });
     }
 
-    public notifUser(comment: string, userId: string){
+    public notifUser(comment: string, userId: string, subject: string, userComment: string): Observable<any>{
         const userData = new FormData();
 
         userData.append('userId', userId);
         userData.append('notificationComment', comment);
+        userData.append('subject', subject);
+        userData.append('userComment', userComment);
 
         return this.http.post(API_URL + '', userData, { observe: 'response' });
     }

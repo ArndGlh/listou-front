@@ -102,7 +102,7 @@ export class BoardAdminComponent implements OnInit {
                 this.notifToSave.oldNotif.state = this.notifToSave.form.state;
                 forkJoin([
                     this.communicationService.putSuggestions(this.notifToSave.oldNotif),
-                    this.notifToSave.form.comment == '' ? of() : this.boardService.notifUser(this.notifToSave.form.comment, this.notifToSave.oldNotif.userId)]).subscribe((t: any[])=> {
+                    this.notifToSave.form.comment == '' ? of() : this.boardService.notifUser(this.notifToSave.form.comment, this.notifToSave.oldNotif.userId, this.constructSubject(), this.notifToSave.oldNotif.text)]).subscribe((t: any[])=> {
                         if (t[0].status === 200) {
                             this.toastr.success('Suggestion modifiée !');
                         } else {
@@ -119,7 +119,7 @@ export class BoardAdminComponent implements OnInit {
                 this.notifToSave.oldNotif.state = this.notifToSave.form.state;
                 forkJoin([
                     this.communicationService.putBugReport(this.notifToSave.oldNotif),
-                    this.notifToSave.form.comment == '' ? of() : this.boardService.notifUser(this.notifToSave.form.comment, this.notifToSave.oldNotif.userId)]).subscribe((t: any[])=> {
+                    this.notifToSave.form.comment == '' ? of() : this.boardService.notifUser(this.notifToSave.form.comment, this.notifToSave.oldNotif.userId, this.constructSubject(), this.notifToSave.oldNotif.text)]).subscribe((t: any[])=> {
                         if (t[0].status === 200) {
                             this.toastr.success('Bug report modifié !');
                         } else {
@@ -136,7 +136,7 @@ export class BoardAdminComponent implements OnInit {
                 this.notifToSave.oldNotif.state = this.notifToSave.form.state;
                 forkJoin([
                     this.communicationService.putContact(this.notifToSave.oldNotif),
-                    this.notifToSave.form.comment == '' ? of() : this.boardService.notifUser(this.notifToSave.form.comment, this.notifToSave.oldNotif.userId)]).subscribe((t: any[])=> {
+                    this.notifToSave.form.comment == '' ? of() : this.boardService.notifUser(this.notifToSave.form.comment, this.notifToSave.oldNotif.userId, this.constructSubject(), this.notifToSave.oldNotif.text)]).subscribe((t: any[])=> {
                         if (t[0].status === 200) {
                             this.toastr.success('Demande de contact modifiée !');
                         } else {
@@ -152,6 +152,9 @@ export class BoardAdminComponent implements OnInit {
         }
     }
 
+    public constructSubject():string {
+        return 'RE: ' + this.notifToSave.oldNotif.type + ' > ' + this.notifToSave.oldNotif.category;
+    }
     public replaceUnderscore(str: string): string{
         return str.replace('_', ' ');
     }
