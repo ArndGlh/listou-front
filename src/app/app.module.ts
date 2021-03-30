@@ -49,6 +49,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ToolbarModule } from 'primeng/toolbar';
 import { RatingModule } from 'primeng/rating';
 import { DialogDetailsComponent } from './components/boards/board-admin/dialog-details/dialog-details.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,7 @@ import { DialogDetailsComponent } from './components/boards/board-admin/dialog-d
     ToolbarModule,
     RatingModule
   ],
-  providers: [authInterceptorProviders, ConfirmationService],
+  providers: [authInterceptorProviders, ConfirmationService, MessageService],
   bootstrap: [AppComponent],
   entryComponents: [DialogDetailsComponent],
 })

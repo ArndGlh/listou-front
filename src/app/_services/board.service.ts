@@ -39,4 +39,8 @@ export class BoardService {
 
         return this.http.post(API_URL + '', userData, { observe: 'response' });
     }
+
+    public getNotifications(): Observable<any> {
+        return this.http.get(API_URL + 'admin/notifications');
+    }
 }
