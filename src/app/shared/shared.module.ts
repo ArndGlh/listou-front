@@ -3,6 +3,7 @@ import { MaterialModule } from "./material/material.module";
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
 	declarations: [
@@ -11,7 +12,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 	],
 	imports: [
 		MaterialModule,
-		FlexLayoutModule
+		FlexLayoutModule,
+		FormsModule
 	],
 	exports: [
 		MaterialModule,

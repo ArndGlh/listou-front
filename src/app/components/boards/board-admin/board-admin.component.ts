@@ -43,7 +43,7 @@ export class BoardAdminComponent implements OnInit {
             this.saveNotif();
           }
         });
-      }
+    }
 
     public saveNotif(){
         this.notifToSave.oldNotif.state = this.notifToSave.form.state;

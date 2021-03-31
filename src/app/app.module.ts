@@ -50,6 +50,10 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { RatingModule } from 'primeng/rating';
 import { DialogDetailsComponent } from './components/boards/board-admin/dialog-details/dialog-details.component';
 import { MessageService } from 'primeng/api';
+import { DialogCreateEventComponent } from './components/applications/listou/dialog-create-event/dialog-create-event.component';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { AgmCoreModule } from '@agm/core';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +74,8 @@ import { MessageService } from 'primeng/api';
     ProfileAccountComponent,
     ProfileNotificationsComponent,
     ProfilePreferencesComponent,
-    DialogDetailsComponent
+    DialogDetailsComponent,
+    DialogCreateEventComponent
   ],
   imports: [
     BrowserModule,
@@ -105,11 +110,23 @@ import { MessageService } from 'primeng/api';
     ProgressBarModule,
     FileUploadModule,
     ToolbarModule,
-    RatingModule
+    RatingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCCUZWDcuQHBGlY_fYWsirZuZ0HtkBQRTI',
+      libraries: ['places']
+    }),
+    MatGoogleMapsAutocompleteModule
   ],
-  providers: [authInterceptorProviders, ConfirmationService, MessageService],
+  providers: [
+    authInterceptorProviders,
+    ConfirmationService,
+    MessageService
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogDetailsComponent],
+  entryComponents: [
+    DialogDetailsComponent,
+    DialogCreateEventComponent
+  ],
 })
 export class AppModule { }
 
