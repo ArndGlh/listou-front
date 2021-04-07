@@ -1,6 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DateAdapter } from '@angular/material/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { DialogDetailsComponent } from 'src/app/components/boards/board-admin/dialog-details/dialog-details.component';
 
 @Component({
@@ -11,10 +12,9 @@ import { DialogDetailsComponent } from 'src/app/components/boards/board-admin/di
 export class DialogCreateEventComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<DialogDetailsComponent>,
-    // @Inject(MAT_DIALOG_DATA) public notif: any,
-    private fb: FormBuilder) { }
-
-
+    private fb: FormBuilder,
+    private dateAdapter: DateAdapter<any>) { }
+    public minDate: Date = new Date();
     public createEventFormGroup!: FormGroup;
 
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class DialogCreateEventComponent implements OnInit {
       title: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
       description: ['', [Validators.maxLength(1000)]],
       startDate: ['', [Validators.required]],
-      duration: [''],
+      duration: ['', [Validators.maxLength(50)]],
       location: ['', [Validators.required]]
     });
   }
@@ -36,11 +36,15 @@ export class DialogCreateEventComponent implements OnInit {
   }
 
   public valid(){
-    this.dialogRef.close({'form': this.createEventFormGroup.value});
+    this.createEventFormGroup.controls.startDate.enable();
+    this.dialogRef.close(this.createEventFormGroup.value);
   }
 
   public onAutocompleteSelected($event: any){
-    console.log(this.createEventFormGroup);
-    this.createEventFormGroup.value['location'] = $event.formatted_address;
+    this.createEventFormGroup.controls.location.setValue($event.formatted_address);
+  }
+
+  public changeDateEvent($event: any){
+    this.createEventFormGroup.controls.startDate.setValue(new Date($event.value).getTime());
   }
 }

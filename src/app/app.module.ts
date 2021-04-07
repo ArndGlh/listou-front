@@ -53,6 +53,12 @@ import { MessageService } from 'primeng/api';
 import { DialogCreateEventComponent } from './components/applications/listou/dialog-create-event/dialog-create-event.component';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentUtcDateAdapter } from './_services/momentUtcDateAdapter.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 
 
 @NgModule({
@@ -115,12 +121,19 @@ import { AgmCoreModule } from '@agm/core';
       apiKey: 'AIzaSyCCUZWDcuQHBGlY_fYWsirZuZ0HtkBQRTI',
       libraries: ['places']
     }),
-    MatGoogleMapsAutocompleteModule
+    MatGoogleMapsAutocompleteModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     authInterceptorProviders,
     ConfirmationService,
-    MessageService
+    MessageService,
+    { provide: MAT_DATE_LOCALE, useValue: 'fr' },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    { provide: DateAdapter, useClass: MomentUtcDateAdapter },
   ],
   bootstrap: [AppComponent],
   entryComponents: [
