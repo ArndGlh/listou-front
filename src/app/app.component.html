@@ -37,10 +37,10 @@
     <div id="app" class="app" fxLayout="column" fxFill>
       <mat-toolbar class="toolbar">
         <button *ngIf="isLoggedIn" mat-icon-button class="icon" (click)="drawer.toggle()">
-          <mat-icon svgIcon="menu" aria-hidden="false"></mat-icon>
+          <svg-icon class="iconNavBar" src="{{ menuIconUrl }}" aria-hidden="false"></svg-icon>
         </button>
         <button mat-icon-button class="icon" routerLink="home">
-          <mat-icon svgIcon="white-home" aria-hidden="false"></mat-icon>
+          <svg-icon class="iconNavBar" src="{{ homeIconUrl }}" aria-hidden="false"></svg-icon>
         </button>
         <a *ngIf="showAdminBoard" routerLink="admin" class="link">Admin Board</a>
         <a *ngIf="showModeratorBoard" routerLink="mod" class="link">Moderator Board</a>
@@ -51,7 +51,7 @@
         <a *ngIf="!isLoggedIn" routerLink="register" class="link">S'inscrire</a>
         <a *ngIf="!isLoggedIn" routerLink="login" class="link">Connexion</a>
         <button *ngIf="isLoggedIn" mat-icon-button class="icon" routerLink="profile">
-          <mat-icon svgIcon="account" aria-hidden="false"></mat-icon>
+          <svg-icon class="iconNavBar" src="{{ accountIconUrl }}" aria-hidden="false"></svg-icon>
         </button>
         <ng-container *ngIf="currentUser">{{ currentUser.username }}</ng-container>
         <a *ngIf="isLoggedIn" (click)="logout()" class="link">Déconnexion</a>

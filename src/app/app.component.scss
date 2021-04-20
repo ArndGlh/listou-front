@@ -76,3 +76,9 @@ a {
   margin-top: -8px;
   color: black;
 }
+
+::ng-deep svg-icon.iconNavBar svg {
+  margin-top: 5px;
+  width: 30px;
+  height: 30px;
+}

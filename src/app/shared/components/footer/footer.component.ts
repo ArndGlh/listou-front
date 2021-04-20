@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { SvgIconsService } from 'src/app/_services/svgIcons.service';
 import { Url } from '../../models/url.model';
 import { UrlService } from '../../services/url.service';
 
@@ -14,18 +12,21 @@ export class FooterComponent implements OnInit {
 
   private footerUrls: Url[];
 
-  constructor(private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer,
-    private router: Router,
-    private urlService: UrlService) {
+  public appleIconUrl: string;
+  public facebookIconUrl: string;
+  public youtubeIconUrl: string;
+  public twitterIconUrl: string;
+
+  constructor(private urlService: UrlService,
+    private svgIconsService: SvgIconsService) {
       this.footerUrls = [];
     }
 
   ngOnInit(): void {
-    this.iconRegistry.addSvgIcon('appstore', this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/apple-app-store.svg'));
-    this.iconRegistry.addSvgIcon('facebook', this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/facebook.svg'));
-    this.iconRegistry.addSvgIcon('youtube', this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/youtube.svg'));
-    this.iconRegistry.addSvgIcon('twitter', this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/icons/twitter.svg'));
+    this.appleIconUrl = this.svgIconsService.getAppleIcon();
+    this.facebookIconUrl = this.svgIconsService.getFacebookIcon();
+    this.youtubeIconUrl = this.svgIconsService.getYoutubeIcon();
+    this.twitterIconUrl = this.svgIconsService.getTwitterIcon();
 
     this.urlService.getFooterUrls().subscribe(
       data => {

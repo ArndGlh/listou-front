@@ -4,6 +4,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
+import { AngularSvgIconModule } from "angular-svg-icon";
 
 @NgModule({
 	declarations: [
@@ -13,7 +14,8 @@ import { FormsModule } from "@angular/forms";
 	imports: [
 		MaterialModule,
 		FlexLayoutModule,
-		FormsModule
+		FormsModule,
+		AngularSvgIconModule
 	],
 	exports: [
 		MaterialModule,

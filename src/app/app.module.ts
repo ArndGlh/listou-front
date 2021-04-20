@@ -60,6 +60,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import { EventDetailsComponent } from './components/applications/listou/event-details/event-details.component';
+import { MatIconRegistry } from '@angular/material/icon';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
   declarations: [
@@ -126,7 +128,8 @@ import { EventDetailsComponent } from './components/applications/listou/event-de
     MatDatepickerModule,
     MatMomentDateModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    AngularSvgIconModule.forRoot()
   ],
   providers: [
     authInterceptorProviders,
