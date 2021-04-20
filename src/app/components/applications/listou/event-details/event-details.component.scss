@@ -1,0 +1,22 @@
+@import '/src/styles/common.scss';
+
+.button {
+    background-color: $font-color;
+    color: $background-color;
+}
+
+.content {
+    padding: 16px;
+}
+
+.content > mat-card {
+    margin-bottom: 16px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar-events {
+    background-color: white;
+}

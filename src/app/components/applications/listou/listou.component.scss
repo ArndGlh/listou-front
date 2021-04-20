@@ -51,4 +51,34 @@ input:focus{
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+
+.mega-card {
+    height: -webkit-fill-available;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.content {
+    padding: 16px;
+}
+
+.content > mat-card {
+    margin-bottom: 16px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar-events {
+    background-color: white;
+}
+
+.description {
+    height: 100px;
+    overflow-y: auto;
 }

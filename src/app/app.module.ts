@@ -59,7 +59,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
-
+import { EventDetailsComponent } from './components/applications/listou/event-details/event-details.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +81,8 @@ import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS } from '@angular/material-
     ProfileNotificationsComponent,
     ProfilePreferencesComponent,
     DialogDetailsComponent,
-    DialogCreateEventComponent
+    DialogCreateEventComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,

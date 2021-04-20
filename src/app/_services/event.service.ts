@@ -26,4 +26,8 @@ export class EventService {
 
     return this.http.post(API_URL + 'event', eventData, { observe: 'response' });
   }
+
+  public getEvent(): Observable<any> {
+    return this.http.get(API_URL + 'event/' + this.tokenStorageService.getUser().id);
+  }
 }

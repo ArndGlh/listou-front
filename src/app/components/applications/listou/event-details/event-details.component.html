@@ -1,0 +1,13 @@
+<mat-toolbar class="toolbar-events">
+    <button mat-button class="button" (click)="precedent()" fxHide.lt-md>
+        <span> < </span>
+    </button>
+    <span class="spacer"></span>
+    <button mat-button class="button" fxHide.lt-md>
+        <span>Créer un évènement</span>
+    </button>
+</mat-toolbar>
+<mat-divider></mat-divider>
+<div class="content">
+    {{ event.description }}
+</div>
