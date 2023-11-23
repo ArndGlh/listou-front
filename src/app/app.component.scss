@@ -1,7 +1,7 @@
-@import '/src/styles/common.scss';
+@import "/src/styles/common.scss";
 
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .toolbar {
@@ -37,7 +37,10 @@
   font-size: 17px;
 }
 
-.link:hover, .link:active, .home-link:hover, .home-link:active {
+.link:hover,
+.link:active,
+.home-link:hover,
+.home-link:active {
   color: $link-hover-color;
 }
 
@@ -46,7 +49,7 @@
 }
 
 a {
-  outline:none;
+  outline: none;
 }
 
 .mat-drawer-container {
@@ -81,4 +84,9 @@ a {
   margin-top: 5px;
   width: 30px;
   height: 30px;
+}
+
+.niceru-logo {
+  width: 100px;
+  margin: 0;
 }

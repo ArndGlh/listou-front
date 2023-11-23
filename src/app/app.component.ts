@@ -10,7 +10,7 @@ import { UserService } from './_services/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   private roles: string[] = [];
@@ -27,27 +27,28 @@ export class AppComponent implements OnInit {
   public homeIconUrl: string;
   public accountIconUrl: string;
   public menuIconUrl: string;
+  public niceruImage = '../../assets/logos/niceru_logo2.png';
 
-  constructor(private tokenStorageService: TokenStorageService,
+  constructor(
+    private tokenStorageService: TokenStorageService,
     private router: Router,
     private userService: UserService,
     private toastr: ToastrService,
-    private svgIconsService: SvgIconsService) {
-      this.userSubscription = new Subscription();
-      this.firstLogin = true;
-    }
+    private svgIconsService: SvgIconsService
+  ) {
+    this.userSubscription = new Subscription();
+    this.firstLogin = true;
+  }
 
   ngOnInit(): void {
-    this.userSubscription = this.userService.usersub.subscribe(
-      (user: User) => {
-        this.currentUser = user;
-        this.isLoggedIn = true;
-        if(this.firstLogin) {
-          this.toastr.success('Connexion réussie !');
-        }
-        this.firstLogin = false;
+    this.userSubscription = this.userService.usersub.subscribe((user: User) => {
+      this.currentUser = user;
+      this.isLoggedIn = true;
+      if (this.firstLogin) {
+        this.toastr.success('Connexion réussie !');
       }
-    );
+      this.firstLogin = false;
+    });
 
     this.homeIconUrl = this.svgIconsService.getHomeIcon();
     this.accountIconUrl = this.svgIconsService.getAccountIcon();
@@ -76,7 +77,7 @@ export class AppComponent implements OnInit {
     this.toastr.success('Déconnexion réussie !');
   }
 
-  public go(url: string){
+  public go(url: string) {
     this.router.navigate([url]);
   }
 }

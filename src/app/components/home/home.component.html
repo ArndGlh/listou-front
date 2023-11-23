@@ -1,6 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="space-evenly center" class="cards">
-
-  <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+<div class="cards">
+  <!-- <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
     <mat-card-header>
       <div mat-card-avatar class="listou-logo"></div>
       <mat-card-title>Listou</mat-card-title>
@@ -59,28 +58,139 @@
       <div fxFlex></div>
       <button mat-button>En savoir plus</button>
     </mat-card-actions>
+  </mat-card> -->
+
+  <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+    <mat-card-header>
+      <div mat-card-avatar class="listou-logo"></div>
+      <mat-card-title>Liens utiles PVE</mat-card-title>
+      <mat-card-subtitle>New world</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="description">
+        <button mat-button (click)="goExt('https://nwdb.info/')">
+          Base de données New World
+        </button>
+        <button
+          mat-button
+          (click)="goExt('https://www.millenium.org/guide/383091.html')"
+        >
+          Forces et faiblesses des mobs (détaillé)
+        </button>
+        <button mat-button (click)="goExt('https://gaming.tools/newworld/fr/')">
+          Guide de mise à niveau métiers
+        </button>
+
+        <button
+          mat-button
+          (click)="
+            goExt(
+              'https://www.youtube.com/watch?v=o0oA9VDfoZw&ab_channel=BagginsTV'
+            )
+          "
+        >
+          Guide upgrade artefact (vidéo Yt)
+        </button>
+
+        <button mat-button (click)="goExt('https://newworldfishingguide.com/')">
+          Guide de la pêche
+        </button>
+
+        <button mat-button (click)="goExt('https://www.nw-buddy.de/')">
+          New world buddy (Pratique pour sauvegarder ses builds)
+        </button>
+
+        <button mat-button (click)="goExt('https://www.newworld-map.com/')">
+          New world map
+        </button>
+
+        <button
+          mat-button
+          (click)="goExt('https://aeternum-map.th.gl/?ref=nwdb_navbar')"
+        >
+          New world map (alternative)
+        </button>
+      </p>
+    </mat-card-content>
   </mat-card>
 
+  <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+    <mat-card-header>
+      <div mat-card-avatar class="listou-logo"></div>
+      <mat-card-title>Liens utiles PVP</mat-card-title>
+      <mat-card-subtitle>New world</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="description">
+        <button mat-button (click)="goExt('https://www.pvnw.net/')">
+          BagginsTV Builds
+        </button>
+      </p>
+    </mat-card-content>
+  </mat-card>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+    <mat-card-header>
+      <div mat-card-avatar class="listou-logo"></div>
+      <mat-card-title>Calculateur</mat-card-title>
+      <mat-card-subtitle>Quintessence</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Gemme a crafter</mat-label>
+          <mat-select
+            [(ngModel)]="gemmeACrafter"
+            (selectionChange)="gemmeACrafterChange(gemmeACrafter)"
+          >
+            <mat-option *ngFor="let gemme of gemmes" [value]="gemme">{{
+              gemme.viewValue
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Nbr de gemmes a crafter</mat-label>
+          <input matInput [(ngModel)]="gemmeNb" />
+        </mat-form-field>
+        <button mat-button (click)="calculate()">Faire la magie</button>
+      </div>
+      <span *ngIf="searched" class="description">
+        Pour {{ gemmeNb }} {{ gemmeACrafter.viewValue }} Il vous faudra :
+        <ul>
+          <li>{{ gemmeNb }} {{ stripGemme(gemmeACrafter.viewValue) }}</li>
+          <li>{{ gemmeNb * 3 }} {{ gemmeACrafter.value }}</li>
+        </ul>
+        Et donc
+        <ul>
+          <li>
+            {{ gemmeNb * 3 * 3 }}
+            {{ quintessenceToEssence(gemmeACrafter.value) }}
+          </li>
+        </ul>
+        Ou
+        <ul>
+          <li>
+            {{ gemmeNb * 3 * 3 * 4 }}
+            {{ quintessenceToVolutes(gemmeACrafter.value) }}
+          </li>
+        </ul>
+        Ou
+        <ul>
+          <li>
+            {{ gemmeNb * 3 * 3 * 4 * 5 }}
+            {{ quintessenceToGrains(gemmeACrafter.value) }}
+          </li>
+        </ul>
+      </span>
+    </mat-card-content>
+  </mat-card>
 </div>
 
-
-
-
-
+<div class="force-container">
+  <img
+    mat-card-image
+    src="{{ faiblesseImage }}"
+    alt="Forces et faiblesse"
+    class="forces-img"
+  />
+</div>

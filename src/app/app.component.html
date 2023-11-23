@@ -1,19 +1,26 @@
 <mat-drawer-container class="example-container">
   <mat-drawer #drawer [mode]="'over'">
-    <mat-list> <!-- TODO : to component -->
+    <mat-list>
+      <!-- TODO : to component -->
       <div mat-subheader class="black">Applications</div>
       <mat-list-item>
         <mat-icon mat-list-icon>folder</mat-icon>
-        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('listou');">Listou</a>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('listou')"
+          >Listou</a
+        >
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>folder</mat-icon>
-        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('home');">Avancements Mangas</a>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('home')"
+          >Avancements Mangas</a
+        >
         <div mat-line>(in progress)</div>
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>folder</mat-icon>
-        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('home');">Application 3</a>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('home')"
+          >Application 3</a
+        >
         <div mat-line>(in progress)</div>
       </mat-list-item>
       <mat-divider></mat-divider>
@@ -21,39 +28,86 @@
       <div mat-subheader>Services</div>
       <mat-list-item>
         <mat-icon mat-list-icon>note</mat-icon>
-        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('suggestions');">Suggestions</a>
+        <a
+          mat-line
+          class="link-drawer"
+          (click)="drawer.toggle(); go('suggestions')"
+          >Suggestions</a
+        >
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>note</mat-icon>
-        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('bug-report');">Bug report</a>
+        <a
+          mat-line
+          class="link-drawer"
+          (click)="drawer.toggle(); go('bug-report')"
+          >Bug report</a
+        >
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>note</mat-icon>
-        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('contact');">Contact</a>
+        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('contact')"
+          >Contact</a
+        >
       </mat-list-item>
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>
     <div id="app" class="app" fxLayout="column" fxFill>
       <mat-toolbar class="toolbar">
-        <button *ngIf="isLoggedIn" mat-icon-button class="icon" (click)="drawer.toggle()">
-          <svg-icon class="iconNavBar" src="{{ menuIconUrl }}" aria-hidden="false"></svg-icon>
+        <button
+          *ngIf="isLoggedIn"
+          mat-icon-button
+          class="icon"
+          (click)="drawer.toggle()"
+        >
+          <svg-icon
+            class="iconNavBar"
+            src="{{ menuIconUrl }}"
+            aria-hidden="false"
+          ></svg-icon>
         </button>
         <button mat-icon-button class="icon" routerLink="home">
-          <svg-icon class="iconNavBar" src="{{ homeIconUrl }}" aria-hidden="false"></svg-icon>
+          <svg-icon
+            class="iconNavBar"
+            src="{{ homeIconUrl }}"
+            aria-hidden="false"
+          ></svg-icon>
         </button>
-        <a *ngIf="showAdminBoard" routerLink="admin" class="link">Admin Board</a>
-        <a *ngIf="showModeratorBoard" routerLink="mod" class="link">Moderator Board</a>
+        <img
+          mat-card-image
+          src="{{ niceruImage }}"
+          alt="Niceru Application"
+          class="niceru-logo"
+        />
+
+        <a *ngIf="showAdminBoard" routerLink="admin" class="link"
+          >Admin Board</a
+        >
+        <a *ngIf="showModeratorBoard" routerLink="mod" class="link"
+          >Moderator Board</a
+        >
         <a *ngIf="isLoggedIn" routerLink="user" class="link">User</a>
 
         <span class="spacer"></span>
 
         <a *ngIf="!isLoggedIn" routerLink="register" class="link">S'inscrire</a>
         <a *ngIf="!isLoggedIn" routerLink="login" class="link">Connexion</a>
-        <button *ngIf="isLoggedIn" mat-icon-button class="icon" routerLink="profile">
-          <svg-icon class="iconNavBar" src="{{ accountIconUrl }}" aria-hidden="false"></svg-icon>
+        <button
+          *ngIf="isLoggedIn"
+          mat-icon-button
+          class="icon"
+          routerLink="profile"
+        >
+          <svg-icon
+            class="iconNavBar"
+            src="{{ accountIconUrl }}"
+            aria-hidden="false"
+          ></svg-icon>
         </button>
-        <ng-container *ngIf="currentUser">{{ currentUser.username }}</ng-container>
+        <ng-container *ngIf="currentUser">{{
+          currentUser.username
+        }}</ng-container>
         <a *ngIf="isLoggedIn" (click)="logout()" class="link">Déconnexion</a>
       </mat-toolbar>
 
@@ -65,7 +119,7 @@
   </mat-drawer-content>
 </mat-drawer-container>
 
-  <!-- ngxTippy [tippyProps]="getToolTipOptions()"
+<!-- ngxTippy [tippyProps]="getToolTipOptions()"
 
   public getToolTipOptions(template: string) {
     return {
