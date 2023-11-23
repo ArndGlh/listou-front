@@ -1,38 +1,70 @@
 <div class="custom-panel">
-    <h2 class="bold margin-tb" mat-dialog-title>Créer un évènement</h2>
-    <div mat-dialog-content class="div-motif" [formGroup]="createEventFormGroup">
+  <h2 class="bold margin-tb" mat-dialog-title>Créer un évènement</h2>
+  <div mat-dialog-content class="div-motif" [formGroup]="createEventFormGroup">
+    <mat-form-field
+      fxLayout="column"
+      fxLayoutAlign="stretch stretch"
+      appearance="outline"
+    >
+      <mat-label>Titre *</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
 
-        <mat-form-field fxLayout="column" fxLayoutAlign="stretch stretch" appearance="outline">
-            <mat-label>Titre *</mat-label>
-            <input matInput formControlName="title">
-        </mat-form-field>
+    <mat-form-field
+      fxLayout="column"
+      fxLayoutAlign="stretch stretch"
+      appearance="outline"
+    >
+      <mat-label>Description</mat-label>
+      <textarea
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="5"
+        cdkAutosizeMaxRows="10"
+        formControlName="description"
+        matInput
+        placeholder="..."
+      >
+      </textarea>
+    </mat-form-field>
 
-        <mat-form-field fxLayout="column" fxLayoutAlign="stretch stretch" appearance="outline">
-            <mat-label>Description</mat-label>
-            <textarea cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="10"
-                formControlName="description" matInput placeholder="...">
-            </textarea>
-        </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Date *</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [min]="minDate"
+        disabled="true"
+        (dateChange)="changeDateEvent($event)"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </mat-form-field>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Date *</mat-label>
-            <input matInput [matDatepicker]="picker" [min]="minDate" disabled="true" (dateChange)="changeDateEvent($event)">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker disabled="false"></mat-datepicker>
-        </mat-form-field>
+    <mat-form-field
+      fxLayout="column"
+      fxLayoutAlign="stretch stretch"
+      appearance="outline"
+    >
+      <mat-label>Durée de l'évènement</mat-label>
+      <input matInput formControlName="duration" />
+    </mat-form-field>
 
-        <mat-form-field fxLayout="column" fxLayoutAlign="stretch stretch" appearance="outline">
-            <mat-label>Durée de l'évènement</mat-label>
-            <input matInput formControlName="duration">
-        </mat-form-field>
-
-        <mat-google-maps-autocomplete appearance="outline" country="fr" type="address"
+    <!-- <mat-google-maps-autocomplete appearance="outline" country="fr" type="address"
         addressLabelText="Adresse" placeholderText="Veuillez entrer une adresse" requiredErrorText="Ce champ est obligatoire" invalidErrorText="L'adresse n'est pas valide"
         (onAutocompleteSelected)="onAutocompleteSelected($event)">
-        </mat-google-maps-autocomplete>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="end center" class="margin-b">
-        <button mat-raised-button class="margin-button" (click)="close()">Annuler</button>
-        <button mat-raised-button class="button-color" [disabled]="createEventFormGroup.invalid" (click)="valid()">Valider</button>
-    </div>
+        </mat-google-maps-autocomplete> -->
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end center" class="margin-b">
+    <button mat-raised-button class="margin-button" (click)="close()">
+      Annuler
+    </button>
+    <button
+      mat-raised-button
+      class="button-color"
+      [disabled]="createEventFormGroup.invalid"
+      (click)="valid()"
+    >
+      Valider
+    </button>
+  </div>
 </div>

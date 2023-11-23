@@ -41,7 +41,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressBarModule } from 'primeng/progressbar';
@@ -51,14 +51,21 @@ import { RatingModule } from 'primeng/rating';
 import { DialogDetailsComponent } from './components/boards/board-admin/dialog-details/dialog-details.component';
 import { MessageService } from 'primeng/api';
 import { DialogCreateEventComponent } from './components/applications/listou/dialog-create-event/dialog-create-event.component';
-import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+// import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 import { MomentUtcDateAdapter } from './_services/momentUtcDateAdapter.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
+import {
+  MatMomentDateModule,
+  MAT_MOMENT_DATE_FORMATS,
+} from '@angular/material-moment-adapter';
 import { EventDetailsComponent } from './components/applications/listou/event-details/event-details.component';
 import { MatIconRegistry } from '@angular/material/icon';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -84,7 +91,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     ProfilePreferencesComponent,
     DialogDetailsComponent,
     DialogCreateEventComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,10 +101,10 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     MaterialFileInputModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
-			timeOut: 7000,
-			positionClass: 'toast-bottom-left',
-			maxOpened: 3,
-			preventDuplicates: true
+      timeOut: 7000,
+      positionClass: 'toast-bottom-left',
+      maxOpened: 3,
+      preventDuplicates: true,
     }),
     BrowserAnimationsModule,
     SharedModule,
@@ -122,14 +129,14 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     RatingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCCUZWDcuQHBGlY_fYWsirZuZ0HtkBQRTI',
-      libraries: ['places']
+      libraries: ['places'],
     }),
-    MatGoogleMapsAutocompleteModule,
+    // MatGoogleMapsAutocompleteModule,
     MatDatepickerModule,
     MatMomentDateModule,
     MatFormFieldModule,
     MatInputModule,
-    AngularSvgIconModule.forRoot()
+    AngularSvgIconModule.forRoot(),
   ],
   providers: [
     authInterceptorProviders,
@@ -140,12 +147,6 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     { provide: DateAdapter, useClass: MomentUtcDateAdapter },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-    DialogDetailsComponent,
-    DialogCreateEventComponent
-  ],
+  entryComponents: [DialogDetailsComponent, DialogCreateEventComponent],
 })
-export class AppModule { }
-
-
-
+export class AppModule {}
