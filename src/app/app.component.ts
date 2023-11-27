@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   public homeIconUrl: string;
   public accountIconUrl: string;
   public menuIconUrl: string;
-  public niceruImage = '../../assets/logos/niceru_logo2.png';
+  public niceruImage = 'assets/logos/niceru_logo2.png';
 
   constructor(
     private tokenStorageService: TokenStorageService,

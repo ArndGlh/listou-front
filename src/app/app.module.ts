@@ -69,6 +69,7 @@ import {
 import { EventDetailsComponent } from './components/applications/listou/event-details/event-details.component';
 import { MatIconRegistry } from '@angular/material/icon';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -137,6 +138,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
     MatFormFieldModule,
     MatInputModule,
     AngularSvgIconModule.forRoot(),
+    MatTabsModule,
   ],
   providers: [
     authInterceptorProviders,

@@ -69,3 +69,40 @@ img {
   .forces-img {
   }
 }
+
+.exp-toolbar-container {
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 32px;
+  color: black;
+
+  mat-tab-group {
+    background: white;
+  }
+
+  .tab {
+    flex-direction: row;
+    display: flex;
+    place-content: center flex-start;
+    align-items: start;
+    gap: 450px;
+    padding: 16px;
+
+    .map-img {
+      width: auto;
+      height: 600px;
+    }
+
+    button {
+    }
+  }
+}
+
+::ng-deep .mat-tab-label-content {
+  color: black !important;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}

@@ -15,22 +15,27 @@ import { BugReportComponent } from './components/application-services/bug-report
 import { ContactComponent } from './components/application-services/contact/contact.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [LoginGuard] },
   { path: 'user', component: BoardUserComponent, canActivate: [LoginGuard] },
-  { path: 'mod', component: BoardModeratorComponent, canActivate: [LoginGuard] },
+  {
+    path: 'mod',
+    component: BoardModeratorComponent,
+    canActivate: [LoginGuard],
+  },
   { path: 'admin', component: BoardAdminComponent, canActivate: [LoginGuard] },
   { path: 'listou', component: ListouComponent, canActivate: [LoginGuard] },
   { path: 'suggestions', component: SuggestionsComponent },
   { path: 'bug-report', component: BugReportComponent },
   { path: 'contact', component: ContactComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '**', redirectTo: '/home' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

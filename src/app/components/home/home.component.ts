@@ -29,6 +29,18 @@ export class HomeComponent implements OnInit {
 
   public searched = false;
 
+  public mapAmrine: string;
+  public mapCarriere: string;
+  public mapDepths: string;
+  public mapDynastie: string;
+  public mapGenese: string;
+  public mapLazarus: string;
+  public mapBarnacles: string;
+  public mapEnneade: string;
+  public mapForge: string;
+  public mapCoeur: string;
+  public mapFosse: string;
+
   public gemmes = [
     { value: 'Quintessence de la terre', viewValue: 'Ambre immaculée taillée' },
     {
@@ -63,6 +75,8 @@ export class HomeComponent implements OnInit {
 
   public gemmeACrafter: any;
   public gemmeNb = 0;
+  public grainPrix = 0;
+  public quintPrix = 0;
 
   constructor(
     private userService: UserService,
@@ -73,7 +87,19 @@ export class HomeComponent implements OnInit {
     this.listouImage = '../../assets/images/app-listou.jpg';
     this.mangaUpdateImage = '../../assets/images/app-manga.jpg';
     this.akwaKonJouImage = '../../assets/images/app-akwakonjou.jpg';
-    this.faiblesseImage = '../../assets/images/forces.png';
+    this.faiblesseImage = 'assets/images/forces.png';
+
+    this.mapAmrine = 'assets/expeditions/amrine.png';
+    this.mapCarriere = 'assets/expeditions/carriere.png';
+    this.mapDepths = 'assets/expeditions/profondeurs.png';
+    this.mapDynastie = 'assets/expeditions/dynastie.png';
+    this.mapGenese = 'assets/expeditions/genese.png';
+    this.mapLazarus = 'assets/expeditions/lazarus.png';
+    this.mapBarnacles = 'assets/expeditions/barnacles.png';
+    this.mapEnneade = 'assets/expeditions/enneade.png';
+    this.mapForge = 'assets/expeditions/forge.png';
+    this.mapCoeur = 'assets/expeditions/coeur.png';
+    this.mapFosse = 'assets/expeditions/fosse.png';
   }
 
   ngOnInit(): void {
@@ -111,7 +137,11 @@ export class HomeComponent implements OnInit {
     this.router.navigate([url]);
   }
 
-  public goExt(url: string): void {
-    window.open(url, '_blank');
+  public goExt(url: string, forge: boolean = false): void {
+    if (forge) {
+      window.open("https://aeternum-map.th.gl/Tempest's%20Heart", '_blank');
+    } else {
+      window.open(url, '_blank');
+    }
   }
 }

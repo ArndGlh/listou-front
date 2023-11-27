@@ -1,19 +1,19 @@
-@import '/src/styles/common.scss';
-
+@import "/src/styles/common.scss";
 
 .footer {
-    background-color: $card-color;
-    color: white;
-    height: 100px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  background-color: $card-color;
+  color: white;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .copyrights {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 ::ng-deep svg-icon svg {
-    margin-top: 15px;
+  margin-top: 15px;
 }

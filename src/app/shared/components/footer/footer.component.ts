@@ -6,10 +6,9 @@ import { UrlService } from '../../services/url.service';
 @Component({
   selector: 'footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-
   private footerUrls: Url[];
 
   public appleIconUrl: string;
@@ -17,10 +16,12 @@ export class FooterComponent implements OnInit {
   public youtubeIconUrl: string;
   public twitterIconUrl: string;
 
-  constructor(private urlService: UrlService,
-    private svgIconsService: SvgIconsService) {
-      this.footerUrls = [];
-    }
+  constructor(
+    private urlService: UrlService,
+    private svgIconsService: SvgIconsService
+  ) {
+    this.footerUrls = [];
+  }
 
   ngOnInit(): void {
     this.appleIconUrl = this.svgIconsService.getAppleIcon();
@@ -29,26 +30,30 @@ export class FooterComponent implements OnInit {
     this.twitterIconUrl = this.svgIconsService.getTwitterIcon();
 
     this.urlService.getFooterUrls().subscribe(
-      data => {
+      (data) => {
         this.footerUrls = data;
       },
-      err => {
+      (err) => {
         // this.footerUrls = JSON.parse(err.error).message;
       }
     );
   }
 
-  public go(urlType: string): void{
-    let urlToGo = this.getUrlFromType(urlType);
-    window.open(urlToGo, "_blank");
+  public go(urlType: string): void {
+    if (urlType === 'youtube') {
+      window.open('http://y2u.be/dQw4w9WgXcQ', '_blank');
+    } else {
+      let urlToGo = this.getUrlFromType(urlType);
+      window.open(urlToGo, '_blank');
+    }
   }
 
-  public getUrlFromType(urlType: string): string{
-      for(let i = 0; i < this.footerUrls.length; i ++) {
-          if(this.footerUrls[i]['name'] === urlType) {
-              return this.footerUrls[i]['url'];
-          }
+  public getUrlFromType(urlType: string): string {
+    for (let i = 0; i < this.footerUrls.length; i++) {
+      if (this.footerUrls[i]['name'] === urlType) {
+        return this.footerUrls[i]['url'];
       }
-      return '';
+    }
+    return '';
   }
 }
