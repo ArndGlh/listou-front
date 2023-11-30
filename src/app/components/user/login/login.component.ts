@@ -14,12 +14,9 @@ import { User } from '../models/user.model';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  animations: [
-    fadeIn
-  ]
+  animations: [fadeIn],
 })
 export class LoginComponent implements OnInit {
-
   public username = '';
   public password = '';
   public show: boolean;
@@ -27,18 +24,25 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   roles: string[] = [];
 
-  constructor(private authService: AuthService,
+  constructor(
+    private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private toastr: ToastrService,
     private userService: UserService,
     private router: Router,
     private iconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer) {
-      this.show = false;
-     }
+    private sanitizer: DomSanitizer
+  ) {
+    this.show = false;
+  }
 
   ngOnInit(): void {
-    this.iconRegistry.addSvgIcon('eye', this.sanitizer.bypassSecurityTrustResourceUrl('../../../../assets/icons/remove_red_eye-white-18dp.svg'));
+    this.iconRegistry.addSvgIcon(
+      'eye',
+      this.sanitizer.bypassSecurityTrustResourceUrl(
+        '../../../../assets/icons/remove_red_eye-white-18dp.svg'
+      )
+    );
 
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
@@ -48,25 +52,14 @@ export class LoginComponent implements OnInit {
 
   public onSubmit(): void {
     this.authService.login(this.username, this.password).subscribe(
-      data => {
+      (data) => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
-        // this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-
-        let roles: Role[] = [];
-        let i = 0;
-        data.roles.forEach((role: Role) => {
-          let r = new Role(i, role.name);
-          roles.push(r);
-          i++;
-        });
-
-        this.userService.login(data);
+        this.userService.setUserSubject(data);
         this.router.navigate(['/home']);
       },
-      err => {
+      (err) => {
         this.toastr.error('Connexion échouée !');
       }
     );

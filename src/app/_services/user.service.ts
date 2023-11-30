@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from '../components/user/models/user.model';
 import { Role } from '../components/user/models/role.model';
 import { TokenStorageService } from './token-storage.service';
@@ -8,26 +8,24 @@ import { TokenStorageService } from './token-storage.service';
 const API_URL = 'http://localhost:8080/user/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  private usersub = new BehaviorSubject<User>(null);
 
-  usersub = new Subject<User>();
-  currentUser: User;
+  constructor(
+    private http: HttpClient,
+    private tokenStorageService: TokenStorageService
+  ) {}
 
-  constructor(private http: HttpClient,
-    private tokenStorageService: TokenStorageService) {
-    let roleTemp = [new Role(0, '')];
-    this.currentUser = new User('', '', roleTemp , 0);
+  emitUserSubject() {}
+
+  setUserSubject(user: User) {
+    this.usersub.next(user);
   }
 
-  emitUserSubject() {
-    this.usersub.next(this.currentUser);
-  }
-
-  login(user: User){
-    this.currentUser = user;
-    this.emitUserSubject();
+  getUserSubject(): Observable<User> {
+    return this.usersub.asObservable();
   }
 
   updateUsername(username: string): Observable<any> {
@@ -36,7 +34,9 @@ export class UserService {
 
     uploadUserData.append('username', username);
     uploadUserData.append('userId', user.id);
-    return this.http.post(API_URL + 'username', uploadUserData, { observe: 'response' });
+    return this.http.post(API_URL + 'username', uploadUserData, {
+      observe: 'response',
+    });
   }
 
   updateEmail(email: string): Observable<any> {
@@ -45,7 +45,9 @@ export class UserService {
 
     uploadUserData.append('email', email);
     uploadUserData.append('userId', user.id);
-    return this.http.post(API_URL + 'email', uploadUserData, { observe: 'response' });
+    return this.http.post(API_URL + 'email', uploadUserData, {
+      observe: 'response',
+    });
   }
 
   updatePassword(password: string): Observable<any> {
@@ -54,6 +56,8 @@ export class UserService {
 
     uploadUserData.append('password', password);
     uploadUserData.append('userId', user.id);
-    return this.http.post(API_URL + 'password', uploadUserData, { observe: 'response' });
+    return this.http.post(API_URL + 'password', uploadUserData, {
+      observe: 'response',
+    });
   }
 }

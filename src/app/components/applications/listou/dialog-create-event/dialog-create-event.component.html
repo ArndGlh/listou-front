@@ -49,6 +49,14 @@
       <input matInput formControlName="duration" />
     </mat-form-field>
 
+    <mat-form-field
+      fxLayout="column"
+      fxLayoutAlign="stretch stretch"
+      appearance="outline"
+    >
+      <mat-label>Lieu de l'évènement</mat-label>
+      <input matInput formControlName="location" />
+    </mat-form-field>
     <!-- <mat-google-maps-autocomplete appearance="outline" country="fr" type="address"
         addressLabelText="Adresse" placeholderText="Veuillez entrer une adresse" requiredErrorText="Ce champ est obligatoire" invalidErrorText="L'adresse n'est pas valide"
         (onAutocompleteSelected)="onAutocompleteSelected($event)">

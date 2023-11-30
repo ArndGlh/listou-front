@@ -12,7 +12,7 @@ import { User } from '../../models/user.model';
 @Component({
   selector: 'profile-main',
   templateUrl: './profile-main.component.html',
-  styleUrls: ['./profile-main.component.scss']
+  styleUrls: ['./profile-main.component.scss'],
 })
 export class ProfileMainComponent implements OnInit {
   public userSubscription: Subscription;
@@ -27,29 +27,28 @@ export class ProfileMainComponent implements OnInit {
 
   public username: string;
 
-  constructor(private _fb: FormBuilder,
+  constructor(
+    private _fb: FormBuilder,
     private fileService: FileService,
     private toastr: ToastrService,
-    private sanitizer : DomSanitizer,
+    private sanitizer: DomSanitizer,
     private userService: UserService,
-    private tokenStorageService: TokenStorageService) {
-      this.userSubscription = new Subscription();
-      this.form = this._fb.group({
-        avatarFile: [
-          undefined,
-          [ FileValidator.maxContentSize(this.maxSize) ]
-        ]
-      });
-      this.avatarUrl = '';
-      this.username = '';
-   }
+    private tokenStorageService: TokenStorageService
+  ) {
+    this.userSubscription = new Subscription();
+    this.form = this._fb.group({
+      avatarFile: [undefined, [FileValidator.maxContentSize(this.maxSize)]],
+    });
+    this.avatarUrl = '';
+    this.username = '';
+  }
 
   ngOnInit(): void {
-    this.userSubscription = this.userService.usersub.subscribe(
-      (user: User) => {
+    this.userSubscription = this.userService
+      .getUserSubject()
+      .subscribe((user: User) => {
         this.currentUser = user;
-      }
-    );
+      });
     this.username = this.tokenStorageService.getUser()['username'];
     this.getImage();
   }
@@ -57,7 +56,7 @@ export class ProfileMainComponent implements OnInit {
   // ================================================================================================================
   public onFileChanged($event: any) {
     console.log(this.form);
-    if($event.target.files[0]){
+    if ($event.target.files[0]) {
       this.validateType($event);
       this.selectedFile = $event.target.files![0];
       const reader = new FileReader();
@@ -69,15 +68,17 @@ export class ProfileMainComponent implements OnInit {
     }
   }
 
-  public validateType($event: any): void{
+  public validateType($event: any): void {
     let currentExt = $event.target.files[0].type;
     const acceptedExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
 
-    this.hasGoodExtension = acceptedExtensions.findIndex(el => el == currentExt) != -1;
+    this.hasGoodExtension =
+      acceptedExtensions.findIndex((el) => el == currentExt) != -1;
   }
 
   public onUpload() {
-    this.fileService.updateAvatar(this.selectedFile).subscribe( // TODO check value avatar file null
+    this.fileService.updateAvatar(this.selectedFile).subscribe(
+      // TODO check value avatar file null
       (response) => {
         if (response.status === 200) {
           this.toastr.success('Mise a jour réussie !');
@@ -89,28 +90,29 @@ export class ProfileMainComponent implements OnInit {
   }
 
   public getImage() {
-    this.fileService.getAvatar().subscribe(
-      res => {
-        if(res.avatar !== null){
-          this.avatarUrl = this.sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + res.avatar);
-        } else {
-          this.avatarUrl = "//ssl.gstatic.com/accounts/ui/avatar_2x.png";
-        }
+    this.fileService.getAvatar().subscribe((res) => {
+      if (res.avatar !== null) {
+        this.avatarUrl = this.sanitizer.bypassSecurityTrustUrl(
+          'data:image/jpeg;base64,' + res.avatar
+        );
+      } else {
+        this.avatarUrl = '//ssl.gstatic.com/accounts/ui/avatar_2x.png';
       }
-    );
+    });
   }
 
-  public onSubmit(){
-    this.userService.updateUsername(this.username).subscribe(
-      (response) => {
-        if (response.status === 200) {
-          this.userService.currentUser.username = this.username;
-          this.userService.emitUserSubject();
-          this.toastr.success('Mise a jour réussie !');
-        } else {
-          this.toastr.error('Mise a jour échouée !');
-        }
+  public onSubmit() {
+    this.userService.updateUsername(this.username).subscribe((response) => {
+      if (response.status === 200) {
+        this.userService.getUserSubject().subscribe((user) => {
+          user.username = this.username;
+        });
+
+        this.userService.emitUserSubject();
+        this.toastr.success('Mise a jour réussie !');
+      } else {
+        this.toastr.error('Mise a jour échouée !');
       }
-    );
+    });
   }
 }

@@ -10,18 +10,10 @@
   // height: 70px;
 }
 
-.home-link {
-  cursor: pointer;
-  text-decoration: none;
-  transition: 1s;
-  font-size: 20px;
-  color: #e8e5e0;
-}
-
 .link {
   cursor: pointer;
   text-decoration: none;
-  transition: 1s;
+  transition: 0.3s;
   margin-left: 20px;
   margin-right: 20px;
   color: #e8e5e0;
@@ -86,7 +78,17 @@ a {
   height: 30px;
 }
 
-.niceru-logo {
-  width: 100px;
+img.niceru-logo {
+  width: 260px;
   margin: 0;
+}
+
+a.link-icon {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+::ng-deep a svg-icon svg {
+  margin-top: 12px !important;
 }

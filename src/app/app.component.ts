@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
   firstLogin: boolean;
+  usertoken: any;
 
   currentUser: any;
   userSubscription: Subscription;
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
   public homeIconUrl: string;
   public accountIconUrl: string;
   public menuIconUrl: string;
-  public niceruImage = 'assets/logos/niceru_logo2.png';
+  public niceruImage = 'assets/logos/ouaisouaisouais_logo_dark.png';
 
   constructor(
     private tokenStorageService: TokenStorageService,
@@ -41,14 +42,27 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userSubscription = this.userService.usersub.subscribe((user: User) => {
-      this.currentUser = user;
+    this.usertoken = this.tokenStorageService.getUser();
+    console.log(this.usertoken);
+    if (this.usertoken) {
       this.isLoggedIn = true;
-      if (this.firstLogin) {
-        this.toastr.success('Connexion réussie !');
-      }
-      this.firstLogin = false;
-    });
+    }
+
+    this.userSubscription = this.userService
+      .getUserSubject()
+      .subscribe((user: User) => {
+        console.log(user);
+        this.currentUser = user;
+
+        if (user) {
+          this.isLoggedIn = true;
+        }
+
+        if (this.firstLogin) {
+          this.toastr.success('Connexion réussie !');
+        }
+        this.firstLogin = false;
+      });
 
     this.homeIconUrl = this.svgIconsService.getHomeIcon();
     this.accountIconUrl = this.svgIconsService.getAccountIcon();

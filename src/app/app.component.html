@@ -5,14 +5,17 @@
       <div mat-subheader class="black">Applications</div>
       <mat-list-item>
         <mat-icon mat-list-icon>folder</mat-icon>
-        <a mat-line class="link-drawer" (click)="drawer.toggle(); go('listou')"
-          >Listou</a
+        <a
+          mat-line
+          class="link-drawer"
+          (click)="drawer.toggle(); go('create-event')"
+          >Evenements</a
         >
       </mat-list-item>
       <mat-list-item>
         <mat-icon mat-list-icon>folder</mat-icon>
         <a mat-line class="link-drawer" (click)="drawer.toggle(); go('home')"
-          >Avancements Mangas</a
+          >Application 2</a
         >
         <div mat-line>(in progress)</div>
       </mat-list-item>
@@ -67,18 +70,20 @@
             aria-hidden="false"
           ></svg-icon>
         </button>
-        <button mat-icon-button class="icon" routerLink="home">
+        <!-- <button mat-icon-button class="icon" routerLink="home">
           <svg-icon
             class="iconNavBar"
             src="{{ homeIconUrl }}"
             aria-hidden="false"
           ></svg-icon>
-        </button>
+        </button> -->
         <img
           mat-card-image
           src="{{ niceruImage }}"
-          alt="Niceru Application"
+          alt="Ouaisouaisouais Application"
           class="niceru-logo"
+          routerLink="home"
+          style="cursor: pointer"
         />
 
         <a *ngIf="showAdminBoard" routerLink="admin" class="link"
@@ -87,27 +92,22 @@
         <a *ngIf="showModeratorBoard" routerLink="mod" class="link"
           >Moderator Board</a
         >
-        <a *ngIf="isLoggedIn" routerLink="user" class="link">User</a>
+        <a *ngIf="isLoggedIn" routerLink="board-user" class="link"
+          >Board membre</a
+        >
 
         <span class="spacer"></span>
 
         <a *ngIf="!isLoggedIn" routerLink="register" class="link">S'inscrire</a>
         <a *ngIf="!isLoggedIn" routerLink="login" class="link">Connexion</a>
-        <button
-          *ngIf="isLoggedIn"
-          mat-icon-button
-          class="icon"
-          routerLink="profile"
-        >
+        <a *ngIf="isLoggedIn" class="link link-icon" routerLink="profile">
           <svg-icon
             class="iconNavBar"
             src="{{ accountIconUrl }}"
             aria-hidden="false"
           ></svg-icon>
-        </button>
-        <ng-container *ngIf="currentUser">{{
-          currentUser.username
-        }}</ng-container>
+          {{ usertoken.username }}
+        </a>
         <a *ngIf="isLoggedIn" (click)="logout()" class="link">Déconnexion</a>
       </mat-toolbar>
 

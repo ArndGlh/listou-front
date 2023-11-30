@@ -1,5 +1,577 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<div class="cards">
+  <!-- <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+    <mat-card-header>
+      <div mat-card-avatar class="listou-logo"></div>
+      <mat-card-title>Listou</mat-card-title>
+      <mat-card-subtitle>Application web</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{ listouImage }}" alt="Listou Application">
+    <mat-card-content>
+      <p class="description">
+        Listou est une application web permettant aux utilisateurs de créer des évènements, y ajouter des participants et
+        ensuite de gérer la liste d'achat à prévoir pour l'évènement. Chacun peut signaler aux autres ce qu'il compte acheter
+        et dans quelles proportions, le prix que cela a coûté, etc. N'hésitez plus, inscrivez-vous sur Niceru pour en profiter !
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxFlex></div>
+      <button mat-button (click)= "go('listou')">En savoir plus</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+    <mat-card-header>
+      <div mat-card-avatar class="manga-logo"></div>
+      <mat-card-title>Manga Update</mat-card-title>
+      <mat-card-subtitle>Application web</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{ mangaUpdateImage }}" alt="Manga web app">
+    <mat-card-content>
+      <p class="description">
+        Manga Update est une application web permettant aux utilisateurs de créer une liste de mangas suivis, ajouter des urls de
+        lecture en ligne, mettre à jour l'avancement du manga et d'être prévenu lorsque un manga sort un scan sur l'url renseigné.
+        N'hésitez plus, inscrivez-vous sur Niceru pour en profiter ! (In progress)
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxFlex></div>
+      <button mat-button (click)= "go('home')">En savoir plus</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+    <mat-card-header>
+      <div mat-card-avatar class="akwakonjou-logo"></div>
+      <mat-card-title>AkwaKonJou</mat-card-title>
+      <mat-card-subtitle>Application web</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{ akwaKonJouImage }}" alt="AkwaKonJou Application">
+    <mat-card-content>
+      <p class="description">
+        AkwaKonJou est une application web permettant aux utilisateurs de créer une session de jeu et d'y ajouter d'autres utilisateurs.
+        Une fois que tout les utilisateurs connectés ont renseigné leur(s) bibliothèque(s) de jeux (Steam, Epic, ...) AkwaKonJou affiche
+        la liste des jeux en commun avec tout les participants, ou à défaut les jeux ayant le plus de joueurs. On peut alors les trier
+        selon des filtres de genre, mode de jeu etc. (In progress)
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxFlex></div>
+      <button mat-button>En savoir plus</button>
+    </mat-card-actions>
+  </mat-card> -->
+
+  <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+    <mat-card-header>
+      <div mat-card-avatar class="listou-logo"></div>
+      <mat-card-title>Liens utiles PVE</mat-card-title>
+      <mat-card-subtitle>New world</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="description">
+        <button mat-button (click)="goExt('https://nwdb.info/')">
+          Base de données New World
+        </button>
+        <button
+          mat-button
+          (click)="goExt('https://www.millenium.org/guide/383091.html')"
+        >
+          Forces et faiblesses des mobs (détaillé)
+        </button>
+        <button mat-button (click)="goExt('https://gaming.tools/newworld/fr/')">
+          Guide de mise à niveau métiers
+        </button>
+
+        <button
+          mat-button
+          (click)="
+            goExt(
+              'https://www.youtube.com/watch?v=o0oA9VDfoZw&ab_channel=BagginsTV'
+            )
+          "
+        >
+          Guide upgrade artefact (vidéo Yt)
+        </button>
+
+        <button mat-button (click)="goExt('https://newworldfishingguide.com/')">
+          Guide de la pêche
+        </button>
+
+        <button mat-button (click)="goExt('https://www.nw-buddy.de/')">
+          New world buddy (Pratique pour sauvegarder ses builds)
+        </button>
+
+        <button mat-button (click)="goExt('https://www.newworld-map.com/')">
+          New world map
+        </button>
+
+        <button
+          mat-button
+          (click)="goExt('https://aeternum-map.th.gl/?ref=nwdb_navbar')"
+        >
+          New world map (alternative)
+        </button>
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+    <mat-card-header>
+      <div mat-card-avatar class="listou-logo"></div>
+      <mat-card-title>Liens utiles Builds</mat-card-title>
+      <mat-card-subtitle>New world</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="description">
+        <button mat-button (click)="goExt('https://www.pvnw.net/')">
+          BagginsTV Builds
+        </button>
+        <button
+          mat-button
+          (click)="
+            goExt('https://www.icy-veins.com/new-world/new-world-build-guides')
+          "
+        >
+          Icy Veins
+        </button>
+        <button mat-button (click)="goExt('https://nwchamp.com/')">
+          NW CHAMP
+        </button>
+        <button
+          mat-button
+          (click)="goExt('https://www.newworldbuilds.com/home')"
+        >
+          Newworldbuilds
+        </button>
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+    <mat-card-header>
+      <div mat-card-avatar class="listou-logo"></div>
+      <mat-card-title>Calculateur</mat-card-title>
+      <mat-card-subtitle>Quintessence</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Gemme a crafter</mat-label>
+          <mat-select
+            [(ngModel)]="gemmeACrafter"
+            (selectionChange)="gemmeACrafterChange(gemmeACrafter)"
+          >
+            <mat-option *ngFor="let gemme of gemmes" [value]="gemme">{{
+              gemme.viewValue
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Nbr de gemmes a crafter</mat-label>
+          <input matInput [(ngModel)]="gemmeNb" />
+        </mat-form-field>
+        <button mat-button (click)="calculate()">Faire la magie</button>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Prix d'un grain à l'HV</mat-label>
+          <input matInput [(ngModel)]="grainPrix" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Prix d'une quintessence à l'HV</mat-label>
+          <input matInput [(ngModel)]="quintPrix" />
+        </mat-form-field>
+      </div>
+
+      <span *ngIf="searched" class="description">
+        Pour {{ gemmeNb }} {{ gemmeACrafter.viewValue }} Il vous faudra :
+        <ul>
+          <li>{{ gemmeNb }} {{ stripGemme(gemmeACrafter.viewValue) }}</li>
+          <li>{{ gemmeNb * 3 }} {{ gemmeACrafter.value }}</li>
+        </ul>
+        Et donc
+        <ul>
+          <li>
+            {{ gemmeNb * 3 * 3 }}
+            {{ quintessenceToEssence(gemmeACrafter.value) }}
+          </li>
+        </ul>
+        Ou
+        <ul>
+          <li>
+            {{ gemmeNb * 3 * 3 * 4 }}
+            {{ quintessenceToVolutes(gemmeACrafter.value) }}
+          </li>
+        </ul>
+        Ou
+        <ul>
+          <li>
+            {{ gemmeNb * 3 * 3 * 4 * 5 }}
+            {{ quintessenceToGrains(gemmeACrafter.value) }}
+          </li>
+        </ul>
+        <div class="row">
+          Si on achète les grains, les quintessences coûteront :
+          {{ gemmeNb * 3 * 3 * 4 * 5 * grainPrix }} golds
+        </div>
+        <div class="row">
+          Si on achète les quintessences directement, ça coûtera :
+          {{ gemmeNb * 3 * quintPrix }} golds
+        </div>
+      </span>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="force-container">
+  <img
+    mat-card-image
+    src="{{ faiblesseImage }}"
+    alt="Forces et faiblesse"
+    class="forces-img"
+  />
+</div>
+
+<div class="exp-toolbar-container">
+  <mat-tab-group mat-align-tabs="start" style="min-height: 700px">
+    <mat-tab label="Amrines">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Dévoyés</span>
+          <span>Drops notable : Aucun</span>
+          <button
+            mat-button
+            (click)="goExt('https://aeternum-map.th.gl/Amrine%20Excavation')"
+          >
+            Lien map
+          </button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapAmrine }}"
+          alt="Amrine"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="Carrières de pierre d'étoile">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Anciens</span>
+          <span
+            >Drops notable :
+            <button
+              mat-button
+              (click)="
+                goExt('https://fr.nwdb.info/db/item/artifact_set1_ring1')
+              "
+            >
+              Buveur de sang (anneau)
+            </button>
+            <button
+              mat-button
+              (click)="
+                goExt('https://nwdb.info/db/item/mountitem_mountreward_box_20')
+              "
+            >
+              Wolfgang (monture loup M3)
+            </button>
+          </span>
+          <button
+            mat-button
+            (click)="goExt('https://aeternum-map.th.gl/Starstone%20Barrows')"
+          >
+            Lien map
+          </button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapCarriere }}"
+          alt="Carrières de pierre d'étoile"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="Les profondeurs">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Altérés</span>
+          <span
+            >Drops notable :
+            <button
+              mat-button
+              (click)="
+                goExt('https://fr.nwdb.info/db/item/artifact_set1_amulet1')
+              "
+            >
+              Chronomètre égaré (amulette)
+            </button>
+            <button
+              mat-button
+              (click)="
+                goExt('https://nwdb.info/db/item/mountitem_mountreward_box_30')
+              "
+            >
+              Godfrey (monture lion M3)
+            </button>
+          </span>
+          <button
+            mat-button
+            (click)="goExt('https://aeternum-map.th.gl/The%20Depths')"
+          >
+            Lien map
+          </button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapDepths }}"
+          alt="Les profondeurs"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Chantier naval de la dynastie">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Altérés</span>
+          <span
+            >Drops notable :
+            <button
+              mat-button
+              (click)="
+                goExt('https://fr.nwdb.info/db/item/artifact_set1_1hlongsword')
+              "
+            >
+              Le boucher (épée)
+            </button>
+            <button
+              mat-button
+              (click)="
+                goExt('https://nwdb.info/db/item/mountitem_mountreward_box_9')
+              "
+            >
+              Golda (monture cheval M3)
+            </button>
+          </span>
+          <button
+            mat-button
+            (click)="
+              goExt('https://mapgenie.io/new-world/maps/dynasty-shipyard')
+            "
+          >
+            Lien map
+          </button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapDynastie }}"
+          alt="Dynastie"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="Jardins de la genèse">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Terre enragée</span>
+          <span
+            >Drops notable :
+            <button
+              mat-button
+              (click)="
+                goExt(
+                  'https://fr.nwdb.info/db/item/artifact_set1_1hthrowingaxe'
+                )
+              "
+            >
+              Francisque de Freya (hachette)
+            </button>
+          </span>
+          <button
+            mat-button
+            (click)="goExt('https://aeternum-map.th.gl/Garden%20of%20Genesis')"
+          >
+            Lien map
+          </button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapGenese }}"
+          alt="Jardins de la genèse"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="L'instrument de Lazarus">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Anciens</span>
+          <span
+            >Drops notable :
+            <button
+              mat-button
+              (click)="
+                goExt('https://fr.nwdb.info/db/item/artifact_set1_2hwarhammer')
+              "
+            >
+              Etincelle de Mjöllnir (marteau)
+            </button>
+          </span>
+          <button
+            mat-button
+            (click)="
+              goExt('https://aeternum-map.th.gl/Lazarus%20Instrumentality')
+            "
+          >
+            Lien map
+          </button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapLazarus }}"
+          alt="L'instrument de Lazarus"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="Barnacles et poudre noire">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Terre enragé (boss) et dévoyés</span>
+          <span
+            >Drops notable :
+            <button
+              mat-button
+              (click)="
+                goExt('https://fr.nwdb.info/db/item/artifact_set1_heavychest')
+              "
+            >
+              Plates sombres du néant (armure)
+            </button>
+          </span>
+          <button
+            mat-button
+            (click)="
+              goExt('https://aeternum-map.th.gl/Barnacles%20&%20Black%20Powder')
+            "
+          >
+            Lien map
+          </button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapBarnacles }}"
+          alt="Barnacles et poudre noire"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="L'énnéade">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Anciens et altérés</span>
+          <span
+            >Drops notable :
+            <button
+              mat-button
+              (click)="
+                goExt(
+                  'https://fr.nwdb.info/db/item/artifact_set1_1htowershield'
+                )
+              "
+            >
+              Le mur (pavois)
+            </button>
+          </span>
+          <button
+            mat-button
+            (click)="goExt('https://aeternum-map.th.gl/The%20Ennead')"
+          >
+            Lien map
+          </button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapEnneade }}"
+          alt="L'énnéade"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="Forge empyréenne">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Humain et dévoyés</span>
+          <span
+            >Drops notable :
+            <button
+              mat-button
+              (click)="
+                goExt('https://fr.nwdb.info/db/item/artifact_set1_2hstafffire')
+              "
+            >
+              Fournaise (baton de feu)
+            </button>
+          </span>
+          <button
+            mat-button
+            (click)="goExt('https://aeternum-map.th.gl/Empyrean%20Forge')"
+          >
+            Lien map
+          </button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapForge }}"
+          alt="Forge empyréenne"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="Coeur de la tempête">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Altérés</span>
+          <span
+            >Drops notable :
+            <button
+              mat-button
+              (click)="
+                goExt('https://fr.nwdb.info/db/item/artifact_set1_heavyhands')
+              "
+            >
+              Gantelets magnétique (gants)
+            </button>
+          </span>
+          <button mat-button (click)="goExt('', true)">Lien map</button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapCoeur }}"
+          alt="Coeur de la tempête"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+    <mat-tab label="Fossé sauvage">
+      <div class="tab">
+        <div class="column">
+          <span>Type d'ennemis : Bêtes</span>
+          <span>Drops notable : Aucun</span>
+          <button
+            mat-button
+            (click)="goExt('https://aeternum-map.th.gl/The%20Savage%20Divide')"
+          >
+            Lien map
+          </button>
+        </div>
+        <img
+          mat-card-image
+          src="{{ mapFosse }}"
+          alt="Fossé sauvage"
+          class="map-img"
+        />
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
